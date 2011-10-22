@@ -47,14 +47,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\SharedClasses\AutoCompleteInterop.cs">
+      <Link>AutoCompleteInterop.cs</Link>
+    </Compile>
     <Compile Include="..\..\SharedClasses\NetworkInterop.cs">
       <Link>NetworkInterop.cs</Link>
+    </Compile>
+    <Compile Include="..\..\SharedClasses\StylingInterop.cs">
+      <Link>StylingInterop.cs</Link>
     </Compile>
     <Compile Include="..\..\SharedClasses\ThreadingInterop.cs">
       <Link>ThreadingInterop.cs</Link>
     </Compile>
     <Compile Include="..\..\SharedClasses\UserMessages.cs">
       <Link>UserMessages.cs</Link>
+    </Compile>
+    <Compile Include="..\..\SharedClasses\Win32Api.cs">
+      <Link>Win32Api.cs</Link>
+    </Compile>
+    <Compile Include="AutoCompleteInteropForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AutoCompleteInteropForm.Designer.cs">
+      <DependentUpon>AutoCompleteInteropForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -73,6 +88,9 @@
     <Compile Include="tmp.cs">
       <SubType>Form</SubType>
     </Compile>
+    <EmbeddedResource Include="AutoCompleteInteropForm.resx">
+      <DependentUpon>AutoCompleteInteropForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
