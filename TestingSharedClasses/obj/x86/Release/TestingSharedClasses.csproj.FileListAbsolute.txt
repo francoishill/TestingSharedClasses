@@ -1,0 +1,10 @@
+C:\Users\francois\documents\visual studio 2010\Projects\TestingSharedClasses\TestingSharedClasses\bin\Release\TestingSharedClasses.exe
+C:\Users\francois\documents\visual studio 2010\Projects\TestingSharedClasses\TestingSharedClasses\bin\Release\TestingSharedClasses.pdb
+C:\Users\francois\documents\visual studio 2010\Projects\TestingSharedClasses\TestingSharedClasses\obj\x86\Release\ResolveAssemblyReference.cache
+C:\Users\francois\documents\visual studio 2010\Projects\TestingSharedClasses\TestingSharedClasses\obj\x86\Release\TestingSharedClasses.Properties.Resources.resources
+C:\Users\francois\documents\visual studio 2010\Projects\TestingSharedClasses\TestingSharedClasses\obj\x86\Release\GenerateResource.read.1.tlog
+C:\Users\francois\documents\visual studio 2010\Projects\TestingSharedClasses\TestingSharedClasses\obj\x86\Release\GenerateResource.write.1.tlog
+C:\Users\francois\documents\visual studio 2010\Projects\TestingSharedClasses\TestingSharedClasses\obj\x86\Release\TestingSharedClasses.exe
+C:\Users\francois\documents\visual studio 2010\Projects\TestingSharedClasses\TestingSharedClasses\obj\x86\Release\TestingSharedClasses.pdb
+C:\Users\francois\documents\visual studio 2010\Projects\TestingSharedClasses\TestingSharedClasses\obj\x86\Release\TestingSharedClasses.MainForm.resources
+C:\Users\francois\documents\visual studio 2010\Projects\TestingSharedClasses\TestingSharedClasses\obj\x86\Release\TestingSharedClasses.NetworkingInteropForm.resources

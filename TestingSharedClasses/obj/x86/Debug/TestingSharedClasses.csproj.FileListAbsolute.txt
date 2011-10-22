@@ -1,0 +1,9 @@
+C:\Users\francois\documents\visual studio 2010\Projects\TestingSharedClasses\TestingSharedClasses\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\francois\documents\visual studio 2010\Projects\TestingSharedClasses\TestingSharedClasses\obj\x86\Debug\TestingSharedClasses.Properties.Resources.resources
+C:\Users\francois\documents\visual studio 2010\Projects\TestingSharedClasses\TestingSharedClasses\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\francois\documents\visual studio 2010\Projects\TestingSharedClasses\TestingSharedClasses\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\francois\documents\visual studio 2010\Projects\TestingSharedClasses\TestingSharedClasses\bin\Debug\TestingSharedClasses.exe
+C:\Users\francois\documents\visual studio 2010\Projects\TestingSharedClasses\TestingSharedClasses\bin\Debug\TestingSharedClasses.pdb
+C:\Users\francois\documents\visual studio 2010\Projects\TestingSharedClasses\TestingSharedClasses\obj\x86\Debug\TestingSharedClasses.exe
+C:\Users\francois\documents\visual studio 2010\Projects\TestingSharedClasses\TestingSharedClasses\obj\x86\Debug\TestingSharedClasses.pdb
+C:\Users\francois\documents\visual studio 2010\Projects\TestingSharedClasses\TestingSharedClasses\obj\x86\Debug\TestingSharedClasses.Form1.resources
