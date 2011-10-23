@@ -91,9 +91,9 @@
 			// 
 			this.textBoxFileToSend.Location = new System.Drawing.Point(12, 49);
 			this.textBoxFileToSend.Name = "textBoxFileToSend";
-			this.textBoxFileToSend.Size = new System.Drawing.Size(223, 20);
+			this.textBoxFileToSend.Size = new System.Drawing.Size(300, 20);
 			this.textBoxFileToSend.TabIndex = 4;
-			this.textBoxFileToSend.Text = "C:\\Francois\\tmp\\Klipdrift CS.sdf";
+			this.textBoxFileToSend.Text = "C:\\Francois\\other\\Test\\SqlFilesAutobackup\\My sql file 1.sql";
 			// 
 			// textBoxIpOrHostaddress
 			// 
@@ -117,7 +117,7 @@
 			// 
 			this.label2.AutoSize = true;
 			this.label2.ForeColor = System.Drawing.Color.Gray;
-			this.label2.Location = new System.Drawing.Point(241, 52);
+			this.label2.Location = new System.Drawing.Point(318, 52);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(61, 13);
 			this.label2.TabIndex = 7;

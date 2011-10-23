@@ -12,13 +12,15 @@ namespace TestingSharedClasses
 	{
 		Socket listeningSocket = null;
 		Socket senderSocket = null;
+		NetworkInterop.TextFeedbackEventHandler textFeedback;
+		NetworkInterop.ProgressChangedEventHandler progressChanged;
 
 		public NetworkingInteropForm()
 		{
 			InitializeComponent();
 
-			NetworkInterop.textFeedback += (snder, evtargs) => { AppendRichtextbox(evtargs.FeedbackText); };
-			NetworkInterop.progressChanged += (snder, evtargs) => { UpdateProgress(evtargs.CurrentValue, evtargs.MaximumValue); };
+			textFeedback += (snder, evtargs) => { AppendRichtextbox(evtargs.FeedbackText); };
+			progressChanged += (snder, evtargs) => { UpdateProgress(evtargs.CurrentValue, evtargs.MaximumValue); };
 			//MessageBox.Show(Environment.CommandLine);
 			//Process.Start(Environment.CommandLine.Replace(".vshost", ""));
 		}
@@ -46,7 +48,7 @@ namespace TestingSharedClasses
 			ThreadingInterop.PerformVoidFunctionSeperateThread(() =>
 			{
 				//TODO: There is some issue with the second time a file is sent (on the server side).
-				NetworkInterop.StartServer(ref listeningSocket, this, 11000);
+				NetworkInterop.StartServer(ref listeningSocket, this, 11000, TextFeedbackEvent: textFeedback, ProgressChangedEvent: progressChanged);
 			});//, false);
 		}
 
