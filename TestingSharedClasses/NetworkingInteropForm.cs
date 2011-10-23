@@ -10,8 +10,8 @@ namespace TestingSharedClasses
 {
 	public partial class NetworkingInteropForm : Form
 	{
-		Socket listeningSocket = null;
-		Socket senderSocket = null;
+		Socket listeningSocket;
+		Socket senderSocket;
 		NetworkInterop.TextFeedbackEventHandler textFeedback;
 		NetworkInterop.ProgressChangedEventHandler progressChanged;
 
@@ -48,7 +48,7 @@ namespace TestingSharedClasses
 			ThreadingInterop.PerformVoidFunctionSeperateThread(() =>
 			{
 				//TODO: There is some issue with the second time a file is sent (on the server side).
-				NetworkInterop.StartServer(ref listeningSocket, this, 11000, TextFeedbackEvent: textFeedback, ProgressChangedEvent: progressChanged);
+				NetworkInterop.StartServer(out listeningSocket, this, 11000, TextFeedbackEvent: textFeedback, ProgressChangedEvent: progressChanged);
 			});//, false);
 		}
 
@@ -60,7 +60,7 @@ namespace TestingSharedClasses
 				UserMessages.ShowWarningMessage("File does not exist: " + fileToSend);
 			NetworkInterop.TransferFile(
 				fileToSend,//@"F:\Series\The Big Bang Theory\Season 3\The.Big.Bang.Theory.S03E01.avi",
-				ref senderSocket,
+				out senderSocket,
 				NetworkInterop.GetIPAddressFromString(ipOrHostaddress),
 				11000);
 		}
