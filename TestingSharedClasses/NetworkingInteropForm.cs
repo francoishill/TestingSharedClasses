@@ -76,7 +76,12 @@ namespace TestingSharedClasses
 					UserMessages.ShowWarningMessage("File does not exist: " + fileToSend);
 				else
 				{
-					NetworkInterop.TransferFile_FileStream(fileToSend, out senderSocket);
+					NetworkInterop.TransferFile_FileStream(
+						fileToSend,
+						out senderSocket,
+						null,//NetworkInterop.GetIPAddressFromString("fjh.dyndns.org"),
+						11000,
+						ProgressChangedEvent: progressChanged);
 					//NetworkInterop.TransferFile(
 					//  fileToSend,//@"F:\Series\The Big Bang Theory\Season 3\The.Big.Bang.Theory.S03E01.avi",
 					//  out senderSocket,
