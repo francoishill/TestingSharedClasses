@@ -30,6 +30,7 @@
 		{
 			this.buttonNetworkingInterop = new System.Windows.Forms.Button();
 			this.buttonAutoCompleteInterop = new System.Windows.Forms.Button();
+			this.labelRecoveryAndRestartSafe = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
 			// buttonNetworkingInterop
@@ -52,17 +53,31 @@
 			this.buttonAutoCompleteInterop.UseVisualStyleBackColor = true;
 			this.buttonAutoCompleteInterop.Click += new System.EventHandler(this.buttonAutoCompleteInterop_Click);
 			// 
+			// labelRecoveryAndRestartSafe
+			// 
+			this.labelRecoveryAndRestartSafe.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.labelRecoveryAndRestartSafe.AutoSize = true;
+			this.labelRecoveryAndRestartSafe.ForeColor = System.Drawing.Color.Green;
+			this.labelRecoveryAndRestartSafe.Location = new System.Drawing.Point(148, 248);
+			this.labelRecoveryAndRestartSafe.Name = "labelRecoveryAndRestartSafe";
+			this.labelRecoveryAndRestartSafe.Size = new System.Drawing.Size(136, 13);
+			this.labelRecoveryAndRestartSafe.TabIndex = 2;
+			this.labelRecoveryAndRestartSafe.Text = "Recovery and Restart Safe";
+			this.labelRecoveryAndRestartSafe.Visible = false;
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(284, 262);
+			this.Controls.Add(this.labelRecoveryAndRestartSafe);
 			this.Controls.Add(this.buttonAutoCompleteInterop);
 			this.Controls.Add(this.buttonNetworkingInterop);
 			this.Name = "MainForm";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "MainForm";
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 
@@ -70,5 +85,6 @@
 
 		private System.Windows.Forms.Button buttonNetworkingInterop;
 		private System.Windows.Forms.Button buttonAutoCompleteInterop;
+		private System.Windows.Forms.Label labelRecoveryAndRestartSafe;
 	}
 }

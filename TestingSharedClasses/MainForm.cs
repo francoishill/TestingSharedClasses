@@ -14,6 +14,15 @@ namespace TestingSharedClasses
 		public MainForm()
 		{
 			InitializeComponent();
+
+			ApplicationRecoveryAndRestart.RegisterApplicationRecoveryAndRestart(delegate
+			{
+				ApplicationRecoveryAndRestart.WriteCrashReportFile("TestingSharedClasses", "The application has crashed");
+			},
+			delegate
+			{
+				labelRecoveryAndRestartSafe.Visible = true;
+			});
 		}
 
 		private void buttonNetworkingInterop_Click(object sender, EventArgs e)
