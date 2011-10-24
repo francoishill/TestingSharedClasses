@@ -79,7 +79,10 @@ namespace TestingSharedClasses
 					NetworkInterop.TransferFile_FileStream(
 						fileToSend,
 						out senderSocket,
-						null,//NetworkInterop.GetIPAddressFromString("fjh.dyndns.org"),
+						
+						//null,
+						NetworkInterop.GetIPAddressFromString("fjh.dyndns.org"),
+						
 						11000,
 						ProgressChangedEvent: progressChanged);
 					//NetworkInterop.TransferFile(
