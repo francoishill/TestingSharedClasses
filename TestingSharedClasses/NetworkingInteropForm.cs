@@ -80,8 +80,8 @@ namespace TestingSharedClasses
 						fileToSend,
 						out senderSocket,
 
-						null,
-						//NetworkInterop.GetIPAddressFromString("fjh.dyndns.org"),
+						//null,
+						NetworkInterop.GetIPAddressFromString(textBoxIpOrHostaddress.Text),//"fjh.dyndns.org"),
 						
 						11000,
 						ProgressChangedEvent: progressChanged);
