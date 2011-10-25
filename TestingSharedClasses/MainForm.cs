@@ -41,7 +41,7 @@ namespace TestingSharedClasses
 		{
 			NetworkingInteropForm networkingInteropForm = new NetworkingInteropForm();
 			networkingInteropForm.Show();
-			//networkingInteropForm.buttonServer.PerformClick();
+			networkingInteropForm.buttonServer.PerformClick();
 		}
 	}
 }

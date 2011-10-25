@@ -38,6 +38,7 @@
 			this.label1 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
 			this.buttonStopServer = new System.Windows.Forms.Button();
+			this.labelBytesPerSecond = new System.Windows.Forms.Label();
 			this.statusStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -68,7 +69,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.richTextBox1.Location = new System.Drawing.Point(12, 130);
 			this.richTextBox1.Name = "richTextBox1";
-			this.richTextBox1.Size = new System.Drawing.Size(458, 299);
+			this.richTextBox1.Size = new System.Drawing.Size(367, 78);
 			this.richTextBox1.TabIndex = 2;
 			this.richTextBox1.Text = "";
 			// 
@@ -76,9 +77,9 @@
 			// 
 			this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripProgressBar1});
-			this.statusStrip1.Location = new System.Drawing.Point(0, 457);
+			this.statusStrip1.Location = new System.Drawing.Point(0, 236);
 			this.statusStrip1.Name = "statusStrip1";
-			this.statusStrip1.Size = new System.Drawing.Size(482, 22);
+			this.statusStrip1.Size = new System.Drawing.Size(391, 22);
 			this.statusStrip1.TabIndex = 3;
 			this.statusStrip1.Text = "statusStrip1";
 			// 
@@ -136,11 +137,22 @@
 			this.buttonStopServer.Visible = false;
 			this.buttonStopServer.Click += new System.EventHandler(this.buttonStopServer_Click);
 			// 
+			// labelBytesPerSecond
+			// 
+			this.labelBytesPerSecond.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.labelBytesPerSecond.AutoSize = true;
+			this.labelBytesPerSecond.Location = new System.Drawing.Point(304, 241);
+			this.labelBytesPerSecond.Name = "labelBytesPerSecond";
+			this.labelBytesPerSecond.Size = new System.Drawing.Size(35, 13);
+			this.labelBytesPerSecond.TabIndex = 9;
+			this.labelBytesPerSecond.Text = "label3";
+			// 
 			// NetworkingInteropForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(482, 479);
+			this.ClientSize = new System.Drawing.Size(391, 258);
+			this.Controls.Add(this.labelBytesPerSecond);
 			this.Controls.Add(this.buttonStopServer);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.label1);
@@ -150,6 +162,7 @@
 			this.Controls.Add(this.richTextBox1);
 			this.Controls.Add(this.buttonClient);
 			this.Controls.Add(this.buttonServer);
+			this.MinimumSize = new System.Drawing.Size(407, 296);
 			this.Name = "NetworkingInteropForm";
 			this.Text = "NetworkingInteropForm";
 			this.Load += new System.EventHandler(this.Form1_Load);
@@ -172,6 +185,7 @@
 		private System.Windows.Forms.Label label2;
 		public System.Windows.Forms.Button buttonServer;
 		private System.Windows.Forms.Button buttonStopServer;
+		private System.Windows.Forms.Label labelBytesPerSecond;
 	}
 }
 

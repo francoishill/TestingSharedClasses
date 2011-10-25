@@ -20,7 +20,7 @@ namespace TestingSharedClasses
 			InitializeComponent();
 
 			textFeedback += (snder, evtargs) => { AppendRichtextbox(evtargs.FeedbackText); };
-			progressChanged += (snder, evtargs) => { UpdateProgress(evtargs.CurrentValue, evtargs.MaximumValue); };
+			progressChanged += (snder, evtargs) => { UpdateProgress(evtargs.CurrentValue, evtargs.MaximumValue, evtargs.BytesPerSecond); };
 			//MessageBox.Show(Environment.CommandLine);
 			//Process.Start(Environment.CommandLine.Replace(".vshost", ""));
 		}
@@ -41,12 +41,13 @@ namespace TestingSharedClasses
 		}
 
 		private delegate void ChangedProgressDelegate(int currentValue, int maximumValue);
-		private void UpdateProgress(int currentValue, int maximumValue)
+		private void UpdateProgress(int currentValue, int maximumValue, double bytesPerSecond = -1)
 		{
 			ThreadingInterop.UpdateGuiFromThread(this, delegate
 			{
 				if (toolStripProgressBar1.Maximum != maximumValue) toolStripProgressBar1.Maximum = maximumValue;
 				if (toolStripProgressBar1.Value != currentValue) toolStripProgressBar1.Value = currentValue;
+				if (bytesPerSecond != -1 && labelBytesPerSecond.Text != Math.Round(bytesPerSecond, 0).ToString()) labelBytesPerSecond.Text = Math.Round(bytesPerSecond, 0).ToString();
 				Application.DoEvents();
 			});
 		}
