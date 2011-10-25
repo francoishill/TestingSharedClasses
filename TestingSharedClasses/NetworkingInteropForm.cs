@@ -43,7 +43,7 @@ namespace TestingSharedClasses
 		private delegate void ChangedProgressDelegate(int currentValue, int maximumValue);
 		private void UpdateProgress(int currentValue, int maximumValue)
 		{
-			ThreadingInterop.UpdateGuiFromThread(statusStrip1, delegate
+			ThreadingInterop.UpdateGuiFromThread(this, delegate
 			{
 				if (toolStripProgressBar1.Maximum != maximumValue) toolStripProgressBar1.Maximum = maximumValue;
 				if (toolStripProgressBar1.Value != currentValue) toolStripProgressBar1.Value = currentValue;
@@ -79,9 +79,9 @@ namespace TestingSharedClasses
 					NetworkInterop.TransferFile_FileStream(
 						fileToSend,
 						out senderSocket,
-						
-						//null,
-						NetworkInterop.GetIPAddressFromString("fjh.dyndns.org"),
+
+						null,
+						//NetworkInterop.GetIPAddressFromString("fjh.dyndns.org"),
 						
 						11000,
 						ProgressChangedEvent: progressChanged);

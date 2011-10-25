@@ -65,6 +65,9 @@
     <Compile Include="..\..\SharedClasses\NetworkInterop.cs">
       <Link>NetworkInterop.cs</Link>
     </Compile>
+    <Compile Include="..\..\SharedClasses\SerializationInterop.cs">
+      <Link>SerializationInterop.cs</Link>
+    </Compile>
     <Compile Include="..\..\SharedClasses\StylingInterop.cs">
       <Link>StylingInterop.cs</Link>
     </Compile>
