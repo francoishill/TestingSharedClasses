@@ -36,5 +36,12 @@ namespace TestingSharedClasses
 			AutoCompleteInteropForm autoCompleteInteropForm = new AutoCompleteInteropForm();
 			autoCompleteInteropForm.Show();
 		}
+
+		private void MainForm_Load(object sender, EventArgs e)
+		{
+			NetworkingInteropForm networkingInteropForm = new NetworkingInteropForm();
+			networkingInteropForm.Show();
+			//networkingInteropForm.buttonServer.PerformClick();
+		}
 	}
 }

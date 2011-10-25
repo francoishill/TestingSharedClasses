@@ -37,6 +37,7 @@
 			this.textBoxIpOrHostaddress = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
+			this.buttonStopServer = new System.Windows.Forms.Button();
 			this.statusStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -124,11 +125,23 @@
 			this.label2.TabIndex = 7;
 			this.label2.Text = "File to send";
 			// 
+			// buttonStopServer
+			// 
+			this.buttonStopServer.Location = new System.Drawing.Point(94, 13);
+			this.buttonStopServer.Name = "buttonStopServer";
+			this.buttonStopServer.Size = new System.Drawing.Size(75, 23);
+			this.buttonStopServer.TabIndex = 8;
+			this.buttonStopServer.Text = "St&op server";
+			this.buttonStopServer.UseVisualStyleBackColor = true;
+			this.buttonStopServer.Visible = false;
+			this.buttonStopServer.Click += new System.EventHandler(this.buttonStopServer_Click);
+			// 
 			// NetworkingInteropForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(482, 479);
+			this.Controls.Add(this.buttonStopServer);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.textBoxIpOrHostaddress);
@@ -149,7 +162,6 @@
 
 		#endregion
 
-		private System.Windows.Forms.Button buttonServer;
 		private System.Windows.Forms.Button buttonClient;
 		private System.Windows.Forms.RichTextBox richTextBox1;
 		private System.Windows.Forms.StatusStrip statusStrip1;
@@ -158,6 +170,8 @@
 		private System.Windows.Forms.TextBox textBoxIpOrHostaddress;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Label label2;
+		public System.Windows.Forms.Button buttonServer;
+		private System.Windows.Forms.Button buttonStopServer;
 	}
 }
 

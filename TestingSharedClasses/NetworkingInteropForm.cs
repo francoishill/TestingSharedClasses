@@ -53,6 +53,7 @@ namespace TestingSharedClasses
 
 		private void buttonServer_Click(object sender, EventArgs e)
 		{
+			buttonStopServer.Visible = true;
 			ThreadingInterop.PerformVoidFunctionSeperateThread(() =>
 			{
 				//TODO: There is some issue with the second time a file is sent (on the server side).
@@ -98,6 +99,12 @@ namespace TestingSharedClasses
 		{
 			//if (Environment.CommandLine.Contains(".vshost"))
 			//  Process.Start(@"C:\Users\francois\Documents\Visual Studio 2010\Projects\TestingSharedClasses\TestingSharedClasses\bin\Release\TestingSharedClasses.exe");
+		}
+
+		private void buttonStopServer_Click(object sender, EventArgs e)
+		{
+			buttonStopServer.Visible = false;
+			listeningSocket.Close();
 		}
 	}
 }
