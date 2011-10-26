@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using System.ComponentModel;
 using System.Net;
 using System.IO;
+using Microsoft.WindowsAPICodePack.Taskbar;
 
 namespace TestingSharedClasses
 {
@@ -14,10 +15,18 @@ namespace TestingSharedClasses
 		Socket senderSocket;
 		NetworkInterop.TextFeedbackEventHandler textFeedback;
 		NetworkInterop.ProgressChangedEventHandler progressChanged;
+		TaskbarManager windows7TaskbarManager;
+		bool IsTaskbarManagerInitiatedAndSupported = false;
 
 		public NetworkingInteropForm()
 		{
 			InitializeComponent();
+
+			if (TaskbarManager.IsPlatformSupported)
+			{
+				windows7TaskbarManager = TaskbarManager.Instance;
+				IsTaskbarManagerInitiatedAndSupported = true;
+			}
 
 			textFeedback += (snder, evtargs) => { AppendRichtextbox(evtargs.FeedbackText); };
 			progressChanged += (snder, evtargs) => { UpdateProgress(evtargs.CurrentValue, evtargs.MaximumValue, evtargs.BytesPerSecond); };
@@ -48,6 +57,16 @@ namespace TestingSharedClasses
 				if (toolStripProgressBar1.Maximum != maximumValue) toolStripProgressBar1.Maximum = maximumValue;
 				if (toolStripProgressBar1.Value != currentValue) toolStripProgressBar1.Value = currentValue;
 				if (bytesPerSecond != -1 && labelBytesPerSecond.Text != Math.Round(bytesPerSecond, 0).ToString()) labelBytesPerSecond.Text = Math.Round(bytesPerSecond, 0).ToString();
+				if (IsTaskbarManagerInitiatedAndSupported)
+				{
+					if (currentValue == 0 && maximumValue == 100)
+						windows7TaskbarManager.SetProgressState(TaskbarProgressBarState.NoProgress);
+					else
+					{
+						windows7TaskbarManager.SetProgressState(TaskbarProgressBarState.Normal);
+						windows7TaskbarManager.SetProgressValue(currentValue, maximumValue, this.Handle);
+					}
+				}
 				Application.DoEvents();
 			});
 		}
@@ -86,6 +105,7 @@ namespace TestingSharedClasses
 						NetworkInterop.GetIPAddressFromString(textBoxIpOrHostaddress.Text),//"fjh.dyndns.org"),
 						
 						11000,
+						TextFeedbackEvent: textFeedback,
 						ProgressChangedEvent: progressChanged);
 					//NetworkInterop.TransferFile(
 					//  fileToSend,//@"F:\Series\The Big Bang Theory\Season 3\The.Big.Bang.Theory.S03E01.avi",

@@ -69,9 +69,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.richTextBox1.Location = new System.Drawing.Point(12, 130);
 			this.richTextBox1.Name = "richTextBox1";
-			this.richTextBox1.Size = new System.Drawing.Size(367, 78);
+			this.richTextBox1.Size = new System.Drawing.Size(642, 78);
 			this.richTextBox1.TabIndex = 2;
 			this.richTextBox1.Text = "";
+			this.richTextBox1.WordWrap = false;
 			// 
 			// statusStrip1
 			// 
@@ -79,7 +80,7 @@
             this.toolStripProgressBar1});
 			this.statusStrip1.Location = new System.Drawing.Point(0, 236);
 			this.statusStrip1.Name = "statusStrip1";
-			this.statusStrip1.Size = new System.Drawing.Size(391, 22);
+			this.statusStrip1.Size = new System.Drawing.Size(666, 22);
 			this.statusStrip1.TabIndex = 3;
 			this.statusStrip1.Text = "statusStrip1";
 			// 
@@ -151,7 +152,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(391, 258);
+			this.ClientSize = new System.Drawing.Size(666, 258);
 			this.Controls.Add(this.labelBytesPerSecond);
 			this.Controls.Add(this.buttonStopServer);
 			this.Controls.Add(this.label2);
