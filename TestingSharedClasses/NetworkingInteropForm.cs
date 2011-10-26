@@ -59,13 +59,9 @@ namespace TestingSharedClasses
 				if (bytesPerSecond != -1 && labelBytesPerSecond.Text != Math.Round(bytesPerSecond, 0).ToString()) labelBytesPerSecond.Text = Math.Round(bytesPerSecond, 0).ToString();
 				if (IsTaskbarManagerInitiatedAndSupported)
 				{
-					if (currentValue == 0 && maximumValue == 100)
-						windows7TaskbarManager.SetProgressState(TaskbarProgressBarState.NoProgress);
-					else
-					{
-						windows7TaskbarManager.SetProgressState(TaskbarProgressBarState.Normal);
-						windows7TaskbarManager.SetProgressValue(currentValue, maximumValue, this.Handle);
-					}
+					if (currentValue == 0 && maximumValue == 100) windows7TaskbarManager.SetProgressState(TaskbarProgressBarState.NoProgress);
+					else windows7TaskbarManager.SetProgressState(TaskbarProgressBarState.Normal);
+					windows7TaskbarManager.SetProgressValue(currentValue, maximumValue, this.Handle);
 				}
 				Application.DoEvents();
 			});
