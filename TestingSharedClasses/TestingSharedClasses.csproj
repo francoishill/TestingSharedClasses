@@ -83,17 +83,11 @@
     <Compile Include="..\..\SharedClasses\NetworkInterop.cs">
       <Link>NetworkInterop.cs</Link>
     </Compile>
-    <Compile Include="..\..\SharedClasses\SerializationInterop.cs">
-      <Link>SerializationInterop.cs</Link>
-    </Compile>
     <Compile Include="..\..\SharedClasses\StylingInterop.cs">
       <Link>StylingInterop.cs</Link>
     </Compile>
     <Compile Include="..\..\SharedClasses\ThreadingInterop.cs">
       <Link>ThreadingInterop.cs</Link>
-    </Compile>
-    <Compile Include="..\..\SharedClasses\UserMessages.cs">
-      <Link>UserMessages.cs</Link>
     </Compile>
     <Compile Include="..\..\SharedClasses\Win32Api.cs">
       <Link>Win32Api.cs</Link>
