@@ -54,14 +54,16 @@ namespace TestingSharedClasses
 		{
 			ThreadingInterop.UpdateGuiFromThread(this, delegate
 			{
+				//if (currentValue > maximumValue) return;
+				if (currentValue < 0 || maximumValue < 0) return;
 				if (toolStripProgressBar1.Maximum != maximumValue) toolStripProgressBar1.Maximum = maximumValue;
 				if (toolStripProgressBar1.Value != currentValue) toolStripProgressBar1.Value = currentValue;
 				if (bytesPerSecond != -1 && labelBytesPerSecond.Text != Math.Round(bytesPerSecond, 0).ToString()) labelBytesPerSecond.Text = Math.Round(bytesPerSecond, 0).ToString();
 				if (IsTaskbarManagerInitiatedAndSupported)
 				{
+					windows7TaskbarManager.SetProgressValue(currentValue, maximumValue);
 					if (currentValue == 0 && maximumValue == 100) windows7TaskbarManager.SetProgressState(TaskbarProgressBarState.NoProgress);
 					else windows7TaskbarManager.SetProgressState(TaskbarProgressBarState.Normal);
-					windows7TaskbarManager.SetProgressValue(currentValue, maximumValue, this.Handle);
 				}
 				Application.DoEvents();
 			});
