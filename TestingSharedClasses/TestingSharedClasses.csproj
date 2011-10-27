@@ -80,14 +80,8 @@
     <Compile Include="..\..\SharedClasses\AutoCompleteInterop.cs">
       <Link>AutoCompleteInterop.cs</Link>
     </Compile>
-    <Compile Include="..\..\SharedClasses\NetworkInterop.cs">
-      <Link>NetworkInterop.cs</Link>
-    </Compile>
     <Compile Include="..\..\SharedClasses\StylingInterop.cs">
       <Link>StylingInterop.cs</Link>
-    </Compile>
-    <Compile Include="..\..\SharedClasses\ThreadingInterop.cs">
-      <Link>ThreadingInterop.cs</Link>
     </Compile>
     <Compile Include="..\..\SharedClasses\Win32Api.cs">
       <Link>Win32Api.cs</Link>
