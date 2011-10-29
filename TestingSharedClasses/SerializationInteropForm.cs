@@ -17,12 +17,13 @@ namespace TestingSharedClasses
 			InitializeComponent();
 		}
 
-		private int ControlCount = 0;
+		//private int ControlCount = 0;
 		private void AddControl(Control control)
 		{
-			if (ControlCount > 0) tableLayoutPanel1.RowCount++;
-			ControlCount++;
-			tableLayoutPanel1.Controls.Add(control, 1, ControlCount);
+			//if (ControlCount > 0) tableLayoutPanel1.RowCount++;
+			//tableLayoutPanel1.Controls.Add(control, 0, ControlCount);
+			//ControlCount++;
+			flowLayoutPanel1.Controls.Add(control);
 			//tableLayoutPanel1.SetRow(control, ControlCount);
 			
 		}
@@ -35,9 +36,10 @@ namespace TestingSharedClasses
 					AddControl(new Label() { Text = fieldInfo.Name + " (" + fieldInfo.FieldType + ")" });
 				}
 			foreach (PropertyInfo propertyInfo in customObject.GetType().GetProperties())
-			{
-				AddControl(new Label() { Text = propertyInfo.Name + " (" + propertyInfo.PropertyType + ")" });
-			}
+				if (propertyInfo.CanWrite)
+				{
+					AddControl(new Label() { Text = propertyInfo.Name + " (" + propertyInfo.PropertyType + ")" });
+				}
 		}
 	}
 }
