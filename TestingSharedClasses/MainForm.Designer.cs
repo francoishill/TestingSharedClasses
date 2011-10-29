@@ -31,6 +31,7 @@
 			this.buttonNetworkingInterop = new System.Windows.Forms.Button();
 			this.buttonAutoCompleteInterop = new System.Windows.Forms.Button();
 			this.labelRecoveryAndRestartSafe = new System.Windows.Forms.Label();
+			this.buttonSerializationInterop = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// buttonNetworkingInterop
@@ -65,11 +66,22 @@
 			this.labelRecoveryAndRestartSafe.Text = "Recovery and Restart Safe";
 			this.labelRecoveryAndRestartSafe.Visible = false;
 			// 
+			// buttonSerializationInterop
+			// 
+			this.buttonSerializationInterop.Location = new System.Drawing.Point(13, 73);
+			this.buttonSerializationInterop.Name = "buttonSerializationInterop";
+			this.buttonSerializationInterop.Size = new System.Drawing.Size(115, 23);
+			this.buttonSerializationInterop.TabIndex = 3;
+			this.buttonSerializationInterop.Text = "Serialization Interop";
+			this.buttonSerializationInterop.UseVisualStyleBackColor = true;
+			this.buttonSerializationInterop.Click += new System.EventHandler(this.buttonSerializationInterop_Click);
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(284, 262);
+			this.Controls.Add(this.buttonSerializationInterop);
 			this.Controls.Add(this.labelRecoveryAndRestartSafe);
 			this.Controls.Add(this.buttonAutoCompleteInterop);
 			this.Controls.Add(this.buttonNetworkingInterop);
@@ -87,5 +99,6 @@
 		private System.Windows.Forms.Button buttonNetworkingInterop;
 		private System.Windows.Forms.Button buttonAutoCompleteInterop;
 		private System.Windows.Forms.Label labelRecoveryAndRestartSafe;
+		private System.Windows.Forms.Button buttonSerializationInterop;
 	}
 }

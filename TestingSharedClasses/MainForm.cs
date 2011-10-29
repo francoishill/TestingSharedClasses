@@ -58,5 +58,37 @@ namespace TestingSharedClasses
 			//MessageBox.Show(br.ReadDouble().ToString());
 			//MessageBox.Show(br.ReadDouble().ToString());
 		}
+
+		private void buttonSerializationInterop_Click(object sender, EventArgs e)
+		{
+			SerializationInteropForm serializationInteropForm = new SerializationInteropForm();
+			serializationInteropForm.AddControlsForCustomObject(new testClass("Francois", "Hill", 24));
+			serializationInteropForm.ShowDialog();
+		}
+
+		class testClass
+		{
+			public string NameField;
+			public string NameProperty { get; set; }
+			public string SurnameField;
+			public string SurnameProperty { get; set; }
+			public int AgeField;
+			public int AgeProperty { get; set; }
+			public testClass(string NameIn, string SurnameIn, int AgeIn)
+			{
+				NameField = NameIn;
+				NameProperty = NameIn;
+				SurnameField = SurnameIn;
+				SurnameProperty = SurnameIn;
+				AgeField = AgeIn;
+				AgeProperty = AgeIn;
+			}
+
+			public object this[int index]
+			{
+				get { return 5; /* return the specified index here */ }
+				set { /* set the specified index to value here */ }
+			}
+		}
 	}
 }
