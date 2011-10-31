@@ -49,7 +49,7 @@ namespace TestingSharedClasses
 			//toolStripProgressBar1.Value = currentValue;
 		}
 
-		private delegate void ChangedProgressDelegate(int currentValue, int maximumValue);
+		//private delegate void ChangedProgressDelegate(int currentValue, int maximumValue);
 		private void UpdateProgress(int currentValue, int maximumValue, double bytesPerSecond = -1)
 		{
 			ThreadingInterop.UpdateGuiFromThread(this, delegate
