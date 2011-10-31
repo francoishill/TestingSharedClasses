@@ -75,7 +75,11 @@ namespace TestingSharedClasses
 			ThreadingInterop.PerformVoidFunctionSeperateThread(() =>
 			{
 				//TODO: There is some issue with the second time a file is sent (on the server side).
-				NetworkInterop.StartServer_FileStream(out listeningSocket, this, 11000, TextFeedbackEvent: textFeedback, ProgressChangedEvent: progressChanged);
+				NetworkInterop.StartServer_FileStream(
+					out listeningSocket,
+					this,
+					TextFeedbackEvent: textFeedback,
+					ProgressChangedEvent: progressChanged);
 			}, false);//, false);
 
 			//ThreadingInterop.PerformVoidFunctionSeperateThread(() =>
