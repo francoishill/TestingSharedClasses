@@ -13,6 +13,8 @@ namespace TestingSharedClasses
 {
 	public partial class MainForm : Form
 	{
+		public TextFeedbackEventHandler textFeedbackEvent;
+
 		public MainForm()
 		{
 			InitializeComponent();
@@ -25,6 +27,11 @@ namespace TestingSharedClasses
 			{
 				labelRecoveryAndRestartSafe.Visible = true;
 			});
+
+			textFeedbackEvent += (snder, evtargs) =>
+			{
+				textBox1.Text += (textBox1.Text.Length > 0 ? Environment.NewLine : "") + evtargs.FeedbackText;
+			};
 		}
 
 		private void buttonNetworkingInterop_Click(object sender, EventArgs e)
@@ -107,13 +114,20 @@ namespace TestingSharedClasses
 			//}
 		}
 
+
 		private void buttonTempNewCommandsManagerClass_Click(object sender, EventArgs e)
 		{
 			//TempNewCommandsManagerClass.GoogleSearchCommand gc = new TempNewCommandsManagerClass.GoogleSearchCommand();
 			//TempNewCommandsManagerClass.PerformCommand(gc, "Hallo there");
 
-			TempNewCommandsManagerClass.ExploreCommand ex = new TempNewCommandsManagerClass.ExploreCommand();
-			TempNewCommandsManagerClass.PerformCommand(ex, @"c:\francois\other");
+			//TempNewCommandsManagerClass.RunCommand rc = new TempNewCommandsManagerClass.RunCommand();
+			//TempNewCommandsManagerClass.PerformCommand(rc, textFeedbackEvent, @"c:\");
+
+			//TempNewCommandsManagerClass.ExploreCommand ex = new TempNewCommandsManagerClass.ExploreCommand();
+			//TempNewCommandsManagerClass.PerformCommand(ex, @"c:\francois\other");
+
+			TempNewCommandsManagerClass.AddTodoitemFirepumaCommand ti = new TempNewCommandsManagerClass.AddTodoitemFirepumaCommand();
+			TempNewCommandsManagerClass.PerformCommand(ti, textFeedbackEvent, "5", "23", "Name");
 		}
 	}
 }

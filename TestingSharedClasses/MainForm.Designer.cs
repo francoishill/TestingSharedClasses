@@ -33,6 +33,7 @@
 			this.labelRecoveryAndRestartSafe = new System.Windows.Forms.Label();
 			this.buttonSerializationInterop = new System.Windows.Forms.Button();
 			this.buttonTempNewCommandsManagerClass = new System.Windows.Forms.Button();
+			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.SuspendLayout();
 			// 
 			// buttonNetworkingInterop
@@ -87,11 +88,24 @@
 			this.buttonTempNewCommandsManagerClass.UseVisualStyleBackColor = true;
 			this.buttonTempNewCommandsManagerClass.Click += new System.EventHandler(this.buttonTempNewCommandsManagerClass_Click);
 			// 
+			// textBox1
+			// 
+			this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox1.Location = new System.Drawing.Point(13, 150);
+			this.textBox1.Multiline = true;
+			this.textBox1.Name = "textBox1";
+			this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+			this.textBox1.Size = new System.Drawing.Size(259, 83);
+			this.textBox1.TabIndex = 5;
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(284, 262);
+			this.Controls.Add(this.textBox1);
 			this.Controls.Add(this.buttonTempNewCommandsManagerClass);
 			this.Controls.Add(this.buttonSerializationInterop);
 			this.Controls.Add(this.labelRecoveryAndRestartSafe);
@@ -113,5 +127,6 @@
 		private System.Windows.Forms.Label labelRecoveryAndRestartSafe;
 		private System.Windows.Forms.Button buttonSerializationInterop;
 		private System.Windows.Forms.Button buttonTempNewCommandsManagerClass;
+		private System.Windows.Forms.TextBox textBox1;
 	}
 }

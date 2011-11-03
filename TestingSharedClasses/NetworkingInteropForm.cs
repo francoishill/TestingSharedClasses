@@ -13,8 +13,8 @@ namespace TestingSharedClasses
 	{
 		Socket listeningSocket;
 		Socket senderSocket;
-		NetworkInterop.TextFeedbackEventHandler textFeedback;
-		NetworkInterop.ProgressChangedEventHandler progressChanged;
+		TextFeedbackEventHandler textFeedback;
+		ProgressChangedEventHandler progressChanged;
 		TaskbarManager windows7TaskbarManager;
 		bool IsTaskbarManagerInitiatedAndSupported = false;
 
