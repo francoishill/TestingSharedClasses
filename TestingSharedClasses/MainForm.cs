@@ -41,9 +41,9 @@ namespace TestingSharedClasses
 
 		private void MainForm_Load(object sender, EventArgs e)
 		{
-			NetworkingInteropForm networkingInteropForm = new NetworkingInteropForm();
-			networkingInteropForm.Show();
-			networkingInteropForm.buttonServer.PerformClick();
+			//NetworkingInteropForm networkingInteropForm = new NetworkingInteropForm();
+			//networkingInteropForm.Show();
+			//networkingInteropForm.buttonServer.PerformClick();
 
 			//MemoryStream stream = new MemoryStream();
 			//BinaryWriter b = new BinaryWriter(stream);
@@ -105,6 +105,15 @@ namespace TestingSharedClasses
 			//	get { return 5; /* return the specified index here */ }
 			//	set { /* set the specified index to value here */ }
 			//}
+		}
+
+		private void buttonTempNewCommandsManagerClass_Click(object sender, EventArgs e)
+		{
+			//TempNewCommandsManagerClass.GoogleSearchCommand gc = new TempNewCommandsManagerClass.GoogleSearchCommand();
+			//TempNewCommandsManagerClass.PerformCommand(gc, "Hallo there");
+
+			TempNewCommandsManagerClass.ExploreCommand ex = new TempNewCommandsManagerClass.ExploreCommand();
+			TempNewCommandsManagerClass.PerformCommand(ex, @"c:\francois\other");
 		}
 	}
 }

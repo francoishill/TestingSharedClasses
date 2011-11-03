@@ -32,6 +32,7 @@
 			this.buttonAutoCompleteInterop = new System.Windows.Forms.Button();
 			this.labelRecoveryAndRestartSafe = new System.Windows.Forms.Label();
 			this.buttonSerializationInterop = new System.Windows.Forms.Button();
+			this.buttonTempNewCommandsManagerClass = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// buttonNetworkingInterop
@@ -76,11 +77,22 @@
 			this.buttonSerializationInterop.UseVisualStyleBackColor = true;
 			this.buttonSerializationInterop.Click += new System.EventHandler(this.buttonSerializationInterop_Click);
 			// 
+			// buttonTempNewCommandsManagerClass
+			// 
+			this.buttonTempNewCommandsManagerClass.Location = new System.Drawing.Point(13, 102);
+			this.buttonTempNewCommandsManagerClass.Name = "buttonTempNewCommandsManagerClass";
+			this.buttonTempNewCommandsManagerClass.Size = new System.Drawing.Size(179, 23);
+			this.buttonTempNewCommandsManagerClass.TabIndex = 4;
+			this.buttonTempNewCommandsManagerClass.Text = "Temp New Commands Manager";
+			this.buttonTempNewCommandsManagerClass.UseVisualStyleBackColor = true;
+			this.buttonTempNewCommandsManagerClass.Click += new System.EventHandler(this.buttonTempNewCommandsManagerClass_Click);
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(284, 262);
+			this.Controls.Add(this.buttonTempNewCommandsManagerClass);
 			this.Controls.Add(this.buttonSerializationInterop);
 			this.Controls.Add(this.labelRecoveryAndRestartSafe);
 			this.Controls.Add(this.buttonAutoCompleteInterop);
@@ -100,5 +112,6 @@
 		private System.Windows.Forms.Button buttonAutoCompleteInterop;
 		private System.Windows.Forms.Label labelRecoveryAndRestartSafe;
 		private System.Windows.Forms.Button buttonSerializationInterop;
+		private System.Windows.Forms.Button buttonTempNewCommandsManagerClass;
 	}
 }
