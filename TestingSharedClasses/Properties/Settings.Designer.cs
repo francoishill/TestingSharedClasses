@@ -22,5 +22,17 @@ namespace TestingSharedClasses.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("MyValue1")]
+        public string MySetting1 {
+            get {
+                return ((string)(this["MySetting1"]));
+            }
+            set {
+                this["MySetting1"] = value;
+            }
+        }
     }
 }

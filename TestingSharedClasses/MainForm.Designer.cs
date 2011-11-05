@@ -34,6 +34,7 @@
 			this.buttonSerializationInterop = new System.Windows.Forms.Button();
 			this.buttonTempNewCommandsManagerClass = new System.Windows.Forms.Button();
 			this.textBox1 = new System.Windows.Forms.TextBox();
+			this.button_SettingsInterop = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// buttonNetworkingInterop
@@ -61,7 +62,7 @@
 			this.labelRecoveryAndRestartSafe.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.labelRecoveryAndRestartSafe.AutoSize = true;
 			this.labelRecoveryAndRestartSafe.ForeColor = System.Drawing.Color.Green;
-			this.labelRecoveryAndRestartSafe.Location = new System.Drawing.Point(148, 248);
+			this.labelRecoveryAndRestartSafe.Location = new System.Drawing.Point(148, 305);
 			this.labelRecoveryAndRestartSafe.Name = "labelRecoveryAndRestartSafe";
 			this.labelRecoveryAndRestartSafe.Size = new System.Drawing.Size(136, 13);
 			this.labelRecoveryAndRestartSafe.TabIndex = 2;
@@ -93,18 +94,29 @@
 			this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox1.Location = new System.Drawing.Point(13, 150);
+			this.textBox1.Location = new System.Drawing.Point(13, 177);
 			this.textBox1.Multiline = true;
 			this.textBox1.Name = "textBox1";
 			this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-			this.textBox1.Size = new System.Drawing.Size(259, 83);
+			this.textBox1.Size = new System.Drawing.Size(259, 113);
 			this.textBox1.TabIndex = 5;
+			// 
+			// button_SettingsInterop
+			// 
+			this.button_SettingsInterop.Location = new System.Drawing.Point(13, 131);
+			this.button_SettingsInterop.Name = "button_SettingsInterop";
+			this.button_SettingsInterop.Size = new System.Drawing.Size(115, 23);
+			this.button_SettingsInterop.TabIndex = 6;
+			this.button_SettingsInterop.Text = "Settings Interop";
+			this.button_SettingsInterop.UseVisualStyleBackColor = true;
+			this.button_SettingsInterop.Click += new System.EventHandler(this.button_SettingsInterop_Click);
 			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(284, 262);
+			this.ClientSize = new System.Drawing.Size(284, 319);
+			this.Controls.Add(this.button_SettingsInterop);
 			this.Controls.Add(this.textBox1);
 			this.Controls.Add(this.buttonTempNewCommandsManagerClass);
 			this.Controls.Add(this.buttonSerializationInterop);
@@ -128,5 +140,6 @@
 		private System.Windows.Forms.Button buttonSerializationInterop;
 		private System.Windows.Forms.Button buttonTempNewCommandsManagerClass;
 		private System.Windows.Forms.TextBox textBox1;
+		private System.Windows.Forms.Button button_SettingsInterop;
 	}
 }

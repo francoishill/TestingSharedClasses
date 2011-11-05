@@ -129,5 +129,44 @@ namespace TestingSharedClasses
 			TempNewCommandsManagerClass.AddTodoitemFirepumaCommand ti = new TempNewCommandsManagerClass.AddTodoitemFirepumaCommand();
 			TempNewCommandsManagerClass.PerformCommand(ti, textFeedbackEvent, "5", "23", "Name");
 		}
+
+		private void button_SettingsInterop_Click(object sender, EventArgs e)
+		{
+			TestSettings ts = SettingsInterop.GetSettings<TestSettings>(
+				"Settingstest.xml",
+				"TestingSharedClasses",
+				"Network",
+				"FJH");
+			MessageBox.Show(ts.MySettingString);
+			//SettingsInterop.FlushSettings(
+			//	new TestSettings() { MySettingString = "MyValue", MySettingInt = 123 },
+			//	@"settingstest.xml",
+			//	"TestingSharedClasses",
+			//	"Network",
+			//	"FJH");
+		}
+	}
+
+	public class TestSettings
+	{
+		private string _MySettingString;
+
+		public string MySettingString
+		{
+			get { return _MySettingString; }
+			set { MessageBox.Show("Set value: " + value); _MySettingString = value; }
+		}
+
+		private int _MySettingInt;
+
+		public int MySettingInt
+		{
+			get { return _MySettingInt; }
+			set { _MySettingInt = value; }
+		}
+
+
+		//public string MySettingString { get { return default; } set { MessageBox.Show("Set value: " + value); } }
+		//public int MySettingInt { get; set; }
 	}
 }

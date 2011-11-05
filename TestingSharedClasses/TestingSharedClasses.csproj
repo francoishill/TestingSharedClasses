@@ -88,6 +88,9 @@
     <Compile Include="..\..\SharedClasses\CommandUsercontrol.xaml.cs">
       <Link>CommandUsercontrol.xaml.cs</Link>
     </Compile>
+    <Compile Include="..\..\SharedClasses\FileSystemInterop.cs">
+      <Link>FileSystemInterop.cs</Link>
+    </Compile>
     <Compile Include="..\..\SharedClasses\InlineCommands.cs">
       <Link>InlineCommands.cs</Link>
     </Compile>
@@ -102,6 +105,9 @@
     </Compile>
     <Compile Include="..\..\SharedClasses\PhpInterop.cs">
       <Link>PhpInterop.cs</Link>
+    </Compile>
+    <Compile Include="..\..\SharedClasses\SettingsInterop.cs">
+      <Link>SettingsInterop.cs</Link>
     </Compile>
     <Compile Include="..\..\SharedClasses\StartupbatInterop.cs">
       <Link>StartupbatInterop.cs</Link>
