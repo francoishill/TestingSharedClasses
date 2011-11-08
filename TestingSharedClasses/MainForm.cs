@@ -132,18 +132,24 @@ namespace TestingSharedClasses
 
 		private void button_SettingsInterop_Click(object sender, EventArgs e)
 		{
-			TestSettings ts = SettingsInterop.GetSettings<TestSettings>(
-				"Settingstest.xml",
-				"TestingSharedClasses",
-				"Network",
-				"FJH");
-			MessageBox.Show(ts.MySettingString);
+			//TestSettings ts = SettingsInterop.GetSettings<TestSettings>(
+			//	"Settingstest.xml",
+			//	"TestingSharedClasses",
+			//	"Network",
+			//	"FJH");
+			//MessageBox.Show(ts.MySettingString);
 			//SettingsInterop.FlushSettings(
 			//	new TestSettings() { MySettingString = "MyValue", MySettingInt = 123 },
 			//	@"settingstest.xml",
 			//	"TestingSharedClasses",
 			//	"Network",
 			//	"FJH");
+		}
+
+		private void button_XmlRpc_Click(object sender, EventArgs e)
+		{
+			TestXmlRpc testXmlRpc = new TestXmlRpc();
+			testXmlRpc.Show();
 		}
 	}
 
