@@ -83,17 +83,11 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\SharedClasses\ApplicationRecoveryAndRestart.cs">
-      <Link>ApplicationRecoveryAndRestart.cs</Link>
-    </Compile>
     <Compile Include="..\..\SharedClasses\AutoCompleteInterop.cs">
       <Link>AutoCompleteInterop.cs</Link>
     </Compile>
     <Compile Include="..\..\SharedClasses\CommandUsercontrol.xaml.cs">
       <Link>CommandUsercontrol.xaml.cs</Link>
-    </Compile>
-    <Compile Include="..\..\SharedClasses\FileSystemInterop.cs">
-      <Link>FileSystemInterop.cs</Link>
     </Compile>
     <Compile Include="..\..\SharedClasses\InlineCommands.cs">
       <Link>InlineCommands.cs</Link>
@@ -109,12 +103,6 @@
     </Compile>
     <Compile Include="..\..\SharedClasses\PhpInterop.cs">
       <Link>PhpInterop.cs</Link>
-    </Compile>
-    <Compile Include="..\..\SharedClasses\SettingsInterop.cs">
-      <Link>SettingsInterop.cs</Link>
-    </Compile>
-    <Compile Include="..\..\SharedClasses\SharedClassesSettings.cs">
-      <Link>SharedClassesSettings.cs</Link>
     </Compile>
     <Compile Include="..\..\SharedClasses\StartupbatInterop.cs">
       <Link>StartupbatInterop.cs</Link>
