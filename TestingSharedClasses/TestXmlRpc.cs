@@ -147,5 +147,10 @@ namespace TestingSharedClasses
 				}
 			}
 		}
+
+		private void button1_Click(object sender, EventArgs e)
+		{
+			XmlRpcInterop.TestFromClient_DynamicCodeInvokingServer();
+		}
 	}
 }

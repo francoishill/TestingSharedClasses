@@ -38,6 +38,7 @@
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
 			this.comboBox1 = new System.Windows.Forms.ComboBox();
 			this.label1 = new System.Windows.Forms.Label();
+			this.button1 = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView_Tickets)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView_ChangeLog)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -152,11 +153,22 @@
 			this.label1.TabIndex = 8;
 			this.label1.Text = "Trac url:";
 			// 
+			// button1
+			// 
+			this.button1.Location = new System.Drawing.Point(781, 12);
+			this.button1.Name = "button1";
+			this.button1.Size = new System.Drawing.Size(151, 23);
+			this.button1.TabIndex = 9;
+			this.button1.Text = "Show message on server";
+			this.button1.UseVisualStyleBackColor = true;
+			this.button1.Click += new System.EventHandler(this.button1_Click);
+			// 
 			// TestXmlRpc
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(944, 501);
+			this.Controls.Add(this.button1);
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.comboBox1);
 			this.Controls.Add(this.splitContainer1);
@@ -189,5 +201,6 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn ValueColumn;
 		private System.Windows.Forms.ComboBox comboBox1;
 		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.Button button1;
 	}
 }
