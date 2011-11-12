@@ -33,9 +33,11 @@
 			this.button_TestTracXmlRpc = new System.Windows.Forms.Button();
 			this.dataGridView_Tickets = new System.Windows.Forms.DataGridView();
 			this.dataGridView_ChangeLog = new System.Windows.Forms.DataGridView();
-			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
 			this.KeyColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.ValueColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+			this.comboBox1 = new System.Windows.Forms.ComboBox();
+			this.label1 = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView_Tickets)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView_ChangeLog)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -60,7 +62,7 @@
 			this.button_XmlRpcServer.Name = "button_XmlRpcServer";
 			this.button_XmlRpcServer.Size = new System.Drawing.Size(106, 23);
 			this.button_XmlRpcServer.TabIndex = 2;
-			this.button_XmlRpcServer.Text = "Xml Rpc Client";
+			this.button_XmlRpcServer.Text = "Xml Rpc Server";
 			this.button_XmlRpcServer.UseVisualStyleBackColor = true;
 			this.button_XmlRpcServer.Click += new System.EventHandler(this.button_XmlRpcServer_Click);
 			// 
@@ -81,12 +83,13 @@
 			this.dataGridView_Tickets.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.dataGridView_Tickets.Location = new System.Drawing.Point(0, 0);
 			this.dataGridView_Tickets.Name = "dataGridView_Tickets";
-			this.dataGridView_Tickets.Size = new System.Drawing.Size(524, 372);
+			this.dataGridView_Tickets.Size = new System.Drawing.Size(564, 372);
 			this.dataGridView_Tickets.TabIndex = 4;
 			this.dataGridView_Tickets.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_Tickets_RowEnter);
 			// 
 			// dataGridView_ChangeLog
 			// 
+			this.dataGridView_ChangeLog.AllowUserToAddRows = false;
 			this.dataGridView_ChangeLog.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dataGridView_ChangeLog.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.KeyColumn,
@@ -94,8 +97,18 @@
 			this.dataGridView_ChangeLog.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.dataGridView_ChangeLog.Location = new System.Drawing.Point(0, 0);
 			this.dataGridView_ChangeLog.Name = "dataGridView_ChangeLog";
-			this.dataGridView_ChangeLog.Size = new System.Drawing.Size(258, 372);
+			this.dataGridView_ChangeLog.Size = new System.Drawing.Size(351, 372);
 			this.dataGridView_ChangeLog.TabIndex = 5;
+			// 
+			// KeyColumn
+			// 
+			this.KeyColumn.HeaderText = "KeyColumn";
+			this.KeyColumn.Name = "KeyColumn";
+			// 
+			// ValueColumn
+			// 
+			this.ValueColumn.HeaderText = "ValueColumn";
+			this.ValueColumn.Name = "ValueColumn";
 			// 
 			// splitContainer1
 			// 
@@ -113,25 +126,39 @@
 			// splitContainer1.Panel2
 			// 
 			this.splitContainer1.Panel2.Controls.Add(this.dataGridView_ChangeLog);
-			this.splitContainer1.Size = new System.Drawing.Size(786, 372);
-			this.splitContainer1.SplitterDistance = 524;
+			this.splitContainer1.Size = new System.Drawing.Size(919, 372);
+			this.splitContainer1.SplitterDistance = 564;
 			this.splitContainer1.TabIndex = 6;
 			// 
-			// KeyColumn
+			// comboBox1
 			// 
-			this.KeyColumn.HeaderText = "KeyColumn";
-			this.KeyColumn.Name = "KeyColumn";
+			this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.comboBox1.FormattingEnabled = true;
+			this.comboBox1.Location = new System.Drawing.Point(186, 72);
+			this.comboBox1.Name = "comboBox1";
+			this.comboBox1.Size = new System.Drawing.Size(613, 21);
+			this.comboBox1.TabIndex = 7;
 			// 
-			// ValueColumn
+			// label1
 			// 
-			this.ValueColumn.HeaderText = "ValueColumn";
-			this.ValueColumn.Name = "ValueColumn";
+			this.label1.AutoSize = true;
+			this.label1.ForeColor = System.Drawing.Color.Gray;
+			this.label1.Location = new System.Drawing.Point(134, 75);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(46, 13);
+			this.label1.TabIndex = 8;
+			this.label1.Text = "Trac url:";
 			// 
 			// TestXmlRpc
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(811, 501);
+			this.ClientSize = new System.Drawing.Size(944, 501);
+			this.Controls.Add(this.label1);
+			this.Controls.Add(this.comboBox1);
 			this.Controls.Add(this.splitContainer1);
 			this.Controls.Add(this.button_TestTracXmlRpc);
 			this.Controls.Add(this.button_XmlRpcServer);
@@ -146,6 +173,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
 			this.splitContainer1.ResumeLayout(false);
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 
@@ -159,5 +187,7 @@
 		private System.Windows.Forms.SplitContainer splitContainer1;
 		private System.Windows.Forms.DataGridViewTextBoxColumn KeyColumn;
 		private System.Windows.Forms.DataGridViewTextBoxColumn ValueColumn;
+		private System.Windows.Forms.ComboBox comboBox1;
+		private System.Windows.Forms.Label label1;
 	}
 }

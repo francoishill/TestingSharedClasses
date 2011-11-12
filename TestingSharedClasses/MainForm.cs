@@ -48,6 +48,7 @@ namespace TestingSharedClasses
 
 		private void MainForm_Load(object sender, EventArgs e)
 		{
+			SharedClassesSettings.EnsureAllSharedClassesSettingsNotNullCreateDefault();
 			//NetworkingInteropForm networkingInteropForm = new NetworkingInteropForm();
 			//networkingInteropForm.Show();
 			//networkingInteropForm.buttonServer.PerformClick();

@@ -19,6 +19,14 @@ namespace TestingSharedClasses
 		public TestXmlRpc()
 		{
 			InitializeComponent();
+
+			comboBox1.Items.Clear();
+			SharedClassesSettings.EnsureAllSharedClassesSettingsNotNullCreateDefault();
+			string[] urlList = new string[0];
+			if (SharedClassesSettings.tracXmlRpcInteropSettings.ListedXmlRpcUrls != null)
+				urlList = SharedClassesSettings.tracXmlRpcInteropSettings.ListedXmlRpcUrls.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+			foreach (string url in urlList)
+				comboBox1.Items.Add(url);
 		}
 
 		private void button_XmlRpcServer_Click(object sender, EventArgs e)
@@ -44,14 +52,21 @@ namespace TestingSharedClasses
 
 		private void ObtainTicketStatusses()
 		{
+			if (comboBox1.SelectedIndex == -1)
+			{
+				UserMessages.ShowWarningMessage("Please select a Trac Url first.", owner: this);
+				return;
+			}
+
 			button_TestTracXmlRpc.Enabled = false;
+			comboBox1.Enabled = false;
 			//textFeedback += (snder, evtargs) =>
 			//{
 			//	MessageBox.Show(evtargs.FeedbackText);
 			//};
 			//VisualStudioInterop.TestTracXmlRpc(textFeedback);
 
-			string url = TracXmlRpcInterop.MonitorSystemXmlRpcUrl;
+			string url = comboBox1.SelectedItem.ToString();//TracXmlRpcInterop.MonitorSystemXmlRpcUrl;
 
 			dataGridView_ChangeLog.Columns.Clear();
 			foreach (FieldInfo fieldInfo in typeof(TracXmlRpcInterop.ChangeLogStruct).GetFields())
@@ -103,6 +118,8 @@ namespace TestingSharedClasses
 				dataGridView_Tickets.Rows[0].Selected = true;
 				PopulateChangeLogGrid(0);
 			}
+
+			comboBox1.Enabled = true;
 			button_TestTracXmlRpc.Enabled = true;
 		}
 
