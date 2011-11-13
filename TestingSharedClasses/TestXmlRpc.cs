@@ -31,12 +31,14 @@ namespace TestingSharedClasses
 
 		private void button_XmlRpcServer_Click(object sender, EventArgs e)
 		{
-			XmlRpcInterop.SampleServer();
+			MessageBox.Show("Function commented out.");
+			//XmlRpcInterop.SampleServer();
 		}
 
 		private void button_XmlRpcClient_Click(object sender, EventArgs e)
 		{
-			XmlRpcInterop.SampleClient();
+			MessageBox.Show("Function commented out.");
+			//XmlRpcInterop.SampleClient();
 		}
 
 		private void TestXmlRpc_FormClosing(object sender, FormClosingEventArgs e)
