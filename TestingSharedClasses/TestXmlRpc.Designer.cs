@@ -28,6 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TestXmlRpc));
 			this.button_XmlRpcClient = new System.Windows.Forms.Button();
 			this.button_XmlRpcServer = new System.Windows.Forms.Button();
 			this.button_TestTracXmlRpc = new System.Windows.Forms.Button();
@@ -175,6 +176,7 @@
 			this.Controls.Add(this.button_TestTracXmlRpc);
 			this.Controls.Add(this.button_XmlRpcServer);
 			this.Controls.Add(this.button_XmlRpcClient);
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "TestXmlRpc";
 			this.Text = "TestXmlRpc";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TestXmlRpc_FormClosing);

@@ -54,7 +54,7 @@ namespace TestingSharedClasses
 		{
 			if (comboBox1.SelectedIndex == -1)
 			{
-				UserMessages.ShowWarningMessage("Please select a Trac Url first.", owner: this);
+				UserMessages.ShowWarningMessage(this, "Please select a Trac Url first.");
 				return;
 			}
 

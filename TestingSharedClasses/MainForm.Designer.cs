@@ -28,6 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
 			this.buttonNetworkingInterop = new System.Windows.Forms.Button();
 			this.buttonAutoCompleteInterop = new System.Windows.Forms.Button();
 			this.labelRecoveryAndRestartSafe = new System.Windows.Forms.Label();
@@ -135,6 +136,7 @@
 			this.Controls.Add(this.labelRecoveryAndRestartSafe);
 			this.Controls.Add(this.buttonAutoCompleteInterop);
 			this.Controls.Add(this.buttonNetworkingInterop);
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "MainForm";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "MainForm";

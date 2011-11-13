@@ -32,6 +32,8 @@ namespace TestingSharedClasses
 			{
 				textBox1.Text += (textBox1.Text.Length > 0 ? Environment.NewLine : "") + evtargs.FeedbackText;
 			};
+
+			UserMessages.iconForMessages = this.Icon;
 		}
 
 		private void buttonNetworkingInterop_Click(object sender, EventArgs e)
