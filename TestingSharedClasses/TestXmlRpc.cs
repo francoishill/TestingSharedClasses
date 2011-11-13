@@ -152,7 +152,22 @@ namespace TestingSharedClasses
 
 		private void button1_Click(object sender, EventArgs e)
 		{
+			//Type t = DynamicCodeInvoking.GetTypeFromSimpleString("System.Windows.Forms.Messagebox", true);
+			//if (t == null) MessageBox.Show("Type not found");
+			//else MessageBox.Show("Type found: " + Environment.NewLine + t.AssemblyQualifiedName);
+
+			//listBox1.Items.Clear();
+			//List<string> list = DynamicCodeInvoking.GetAllUniqueTypesInCurrentAssembly();
+			//foreach (string s in list)
+			//	listBox1.Items.Add(s);
+
 			XmlRpcInterop.TestFromClient_DynamicCodeInvokingServer();
+		}
+
+		private void button2_Click(object sender, EventArgs e)
+		{
+			TestDynamicCodeInvokingUserControl testDynamicCodeInvokingUserControl = new TestDynamicCodeInvokingUserControl();
+			testDynamicCodeInvokingUserControl.Show();
 		}
 	}
 }

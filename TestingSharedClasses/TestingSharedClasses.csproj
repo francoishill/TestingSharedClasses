@@ -92,6 +92,13 @@
     <Compile Include="..\..\SharedClasses\CommandUsercontrol.xaml.cs">
       <Link>CommandUsercontrol.xaml.cs</Link>
     </Compile>
+    <Compile Include="..\..\SharedClasses\DynamicCodeInvokingUserControl.cs">
+      <Link>DynamicCodeInvokingUserControl.cs</Link>
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="..\..\SharedClasses\DynamicCodeInvokingUserControl.Designer.cs">
+      <Link>DynamicCodeInvokingUserControl.Designer.cs</Link>
+    </Compile>
     <Compile Include="..\..\SharedClasses\InlineCommands.cs">
       <Link>InlineCommands.cs</Link>
     </Compile>
@@ -154,6 +161,12 @@
     <Compile Include="SerializationInteropForm.Designer.cs">
       <DependentUpon>SerializationInteropForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="TestDynamicCodeInvokingUserControl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TestDynamicCodeInvokingUserControl.Designer.cs">
+      <DependentUpon>TestDynamicCodeInvokingUserControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="TestXmlRpc.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -161,6 +174,9 @@
       <DependentUpon>TestXmlRpc.cs</DependentUpon>
     </Compile>
     <Compile Include="tmp.cs" />
+    <EmbeddedResource Include="..\..\SharedClasses\DynamicCodeInvokingUserControl.resx">
+      <Link>DynamicCodeInvokingUserControl.resx</Link>
+    </EmbeddedResource>
     <EmbeddedResource Include="AutoCompleteInteropForm.resx">
       <DependentUpon>AutoCompleteInteropForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -182,6 +198,9 @@
     </Compile>
     <EmbeddedResource Include="SerializationInteropForm.resx">
       <DependentUpon>SerializationInteropForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TestDynamicCodeInvokingUserControl.resx">
+      <DependentUpon>TestDynamicCodeInvokingUserControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TestXmlRpc.resx">
       <DependentUpon>TestXmlRpc.cs</DependentUpon>
