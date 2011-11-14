@@ -20,24 +20,40 @@ namespace TestingSharedClasses
 
 		private void button1_Click(object sender, EventArgs e)
 		{
-			Dictionary<string, PropertyNameAndType> dict = dynamicCodeInvokingUserControl1.TestResultDictionary();
-			foreach (string key in dict.Keys)
-				MessageBox.Show(key + ": " + dict[key].Value.ToString());
+			try
+			{
+				Dictionary<string, ParameterNameAndType> dict = dynamicCodeInvokingUserControl1.GetSelectedDictionaryWithParameterNamesAndValues();
+				//foreach (string key in dict.Keys)
+				//	MessageBox.Show(key + ": " + dict[key].Value.ToString());
 
-			//SharedClassesSettings.EnsureAllSharedClassesSettingsNotNullCreateDefault();
-			//Iclientside_DynamicCodeInvokingServerClass proxy = XmlRpcProxyGen.Create<Iclientside_DynamicCodeInvokingServerClass>();
-			//proxy.Url = SharedClassesSettings.tracXmlRpcInteropSettings.GetCominedUrlForDynamicInvokationServer();
+				SharedClassesSettings.EnsureAllSharedClassesSettingsNotNullCreateDefault();
+				Iclientside_DynamicCodeInvokingServerClass proxy = XmlRpcProxyGen.Create<Iclientside_DynamicCodeInvokingServerClass>();
+				proxy.Url = SharedClassesSettings.tracXmlRpcInteropSettings.GetCominedUrlForDynamicInvokationServer();
 
-			//string[] TypeStringArray;
-			//object[] ParameterList;
-			//DynamicCodeInvoking.GetParameterListAndTypesStringArray(out TypeStringArray, out ParameterList, @"Hallo");
-			//DynamicCodeInvoking.RunCodeReturnStruct resultObj = proxy.RunCodeDynamically(
-			//	typeof(MessageBox).AssemblyQualifiedName,
-			//	TypeStringArray,
-			//	"Show",
-			//	ParameterList
-			//	);
-			////MessageBox.Show("Not implemented yet.");
+				List<object> objectList = new List<object>();
+				foreach (string key in dict.Keys)
+					objectList.Add(dict[key].Value);
+				string[] TypeStringArray;
+				object[] ParameterList;
+				DynamicCodeInvoking.GetParameterListAndTypesStringArray(out TypeStringArray, out ParameterList, objectList.ToArray());
+				//DynamicCodeInvoking.RunCodeFromStaticClass(
+				//	dynamicCodeInvokingUserControl1.GetSelectedMethodClassType().AssemblyQualifiedName,
+				//	TypeStringArray,
+				//	dynamicCodeInvokingUserControl1.GetSelectedMethodName(),
+				//	ParameterList);
+
+				DynamicCodeInvoking.RunCodeReturnStruct resultObj = proxy.RunCodeDynamically(
+					dynamicCodeInvokingUserControl1.GetSelectedMethodClassType().AssemblyQualifiedName,
+					TypeStringArray,
+					dynamicCodeInvokingUserControl1.GetSelectedMethodName(),
+					ParameterList
+					);
+				////MessageBox.Show("Not implemented yet.");
+			}
+			catch (Exception exc)
+			{
+				UserMessages.ShowErrorMessage("Could not perform dynamic method remotely: " + Environment.NewLine + exc.Message + Environment.NewLine + Environment.NewLine + exc.StackTrace);
+			}
 		}
 	}
 }
