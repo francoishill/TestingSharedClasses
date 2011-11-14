@@ -161,7 +161,7 @@ namespace TestingSharedClasses
 			//foreach (string s in list)
 			//	listBox1.Items.Add(s);
 
-			XmlRpcInterop.TestFromClient_DynamicCodeInvokingServer();
+			//XmlRpcInterop.TestFromClient_DynamicCodeInvokingServer();
 		}
 
 		private void button2_Click(object sender, EventArgs e)
