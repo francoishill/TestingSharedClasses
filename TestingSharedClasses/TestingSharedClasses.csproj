@@ -102,6 +102,13 @@
     <Compile Include="..\..\SharedClasses\InlineCommands.cs">
       <Link>InlineCommands.cs</Link>
     </Compile>
+    <Compile Include="..\..\SharedClasses\InlineCommandsUserControl.cs">
+      <Link>InlineCommandsUserControl.cs</Link>
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="..\..\SharedClasses\InlineCommandsUserControl.Designer.cs">
+      <Link>InlineCommandsUserControl.Designer.cs</Link>
+    </Compile>
     <Compile Include="..\..\SharedClasses\MicrosoftOfficeInterop.cs">
       <Link>MicrosoftOfficeInterop.cs</Link>
     </Compile>
@@ -176,6 +183,9 @@
     <Compile Include="tmp.cs" />
     <EmbeddedResource Include="..\..\SharedClasses\DynamicCodeInvokingUserControl.resx">
       <Link>DynamicCodeInvokingUserControl.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\SharedClasses\InlineCommandsUserControl.resx">
+      <Link>InlineCommandsUserControl.resx</Link>
     </EmbeddedResource>
     <EmbeddedResource Include="AutoCompleteInteropForm.resx">
       <DependentUpon>AutoCompleteInteropForm.cs</DependentUpon>

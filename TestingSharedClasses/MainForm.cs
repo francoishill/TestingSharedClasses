@@ -8,6 +8,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
+using ICommandWithHandler = TempNewCommandsManagerClass.ICommandWithHandler;
 
 namespace TestingSharedClasses
 {
@@ -30,7 +31,8 @@ namespace TestingSharedClasses
 
 			textFeedbackEvent += (snder, evtargs) =>
 			{
-				textBox1.Text += (textBox1.Text.Length > 0 ? Environment.NewLine : "") + evtargs.FeedbackText;
+				ThreadingInterop.UpdateGuiFromThread(this, () =>
+				{ textBox1.Text += (textBox1.Text.Length > 0 ? Environment.NewLine : "") + evtargs.FeedbackText; });
 			};
 
 			UserMessages.iconForMessages = this.Icon;
@@ -51,6 +53,7 @@ namespace TestingSharedClasses
 		private void MainForm_Load(object sender, EventArgs e)
 		{
 			SharedClassesSettings.EnsureAllSharedClassesSettingsNotNullCreateDefault();
+			inlineCommandsUserControl1.InitializeTreeViewNodes();
 			//NetworkingInteropForm networkingInteropForm = new NetworkingInteropForm();
 			//networkingInteropForm.Show();
 			//networkingInteropForm.buttonServer.PerformClick();
@@ -129,9 +132,20 @@ namespace TestingSharedClasses
 			//TempNewCommandsManagerClass.ExploreCommand ex = new TempNewCommandsManagerClass.ExploreCommand();
 			//TempNewCommandsManagerClass.PerformCommand(ex, @"c:\francois\other");
 
-			TempNewCommandsManagerClass.AddTodoitemFirepumaCommand ti = new TempNewCommandsManagerClass.AddTodoitemFirepumaCommand();
-			TempNewCommandsManagerClass.PerformCommand(ti, textFeedbackEvent, "5", "23", "Name");
+			//TempNewCommandsManagerClass.AddTodoitemFirepumaCommand ti = new TempNewCommandsManagerClass.AddTodoitemFirepumaCommand();
+			//TempNewCommandsManagerClass.PerformCommand(ti, textFeedbackEvent, "5", "23", "Name");
+
+			treeView1.Nodes.Clear();
+			textBox2.Enabled = false;
+			foreach (ICommandWithHandler comm in TempNewCommandsManagerClass.ListOfInitializedCommandInterfaces)
+				treeView1.Nodes.Add(new TreeNode()
+				{
+					Name = comm.CommandName,
+					Text = comm.DisplayName,
+					Tag = comm
+				});
 		}
+		//List<ICommandWithHandler> ListOfInitializedCommandInterfaces = null;
 
 		private void button_SettingsInterop_Click(object sender, EventArgs e)
 		{
@@ -153,6 +167,32 @@ namespace TestingSharedClasses
 		{
 			TestXmlRpc testXmlRpc = new TestXmlRpc();
 			testXmlRpc.Show();
+		}
+
+		private void MainForm_Shown(object sender, EventArgs e)
+		{
+			StylingInterop.SetTreeviewVistaStyle(treeView1);
+		}
+
+		private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
+		{
+			if (e.KeyChar == (char)Keys.Enter)
+			{
+				e.Handled = true;
+				if (treeView1.SelectedNode != null && treeView1.SelectedNode.Tag is ICommandWithHandler)
+				{
+					ICommandWithHandler comm = treeView1.SelectedNode.Tag as ICommandWithHandler;
+					TempNewCommandsManagerClass.PerformCommandFromString(
+						comm,
+						textFeedbackEvent,
+						textBox2.Text);
+				}
+			}
+		}
+
+		private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
+		{
+			textBox2.Enabled = e.Node != null;
 		}
 	}
 

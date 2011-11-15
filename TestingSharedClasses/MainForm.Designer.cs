@@ -37,6 +37,9 @@
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.button_SettingsInterop = new System.Windows.Forms.Button();
 			this.button_XmlRpc = new System.Windows.Forms.Button();
+			this.treeView1 = new System.Windows.Forms.TreeView();
+			this.textBox2 = new System.Windows.Forms.TextBox();
+			this.inlineCommandsUserControl1 = new SharedClasses.InlineCommandsUserControl();
 			this.SuspendLayout();
 			// 
 			// buttonNetworkingInterop
@@ -64,7 +67,7 @@
 			this.labelRecoveryAndRestartSafe.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.labelRecoveryAndRestartSafe.AutoSize = true;
 			this.labelRecoveryAndRestartSafe.ForeColor = System.Drawing.Color.Green;
-			this.labelRecoveryAndRestartSafe.Location = new System.Drawing.Point(666, 431);
+			this.labelRecoveryAndRestartSafe.Location = new System.Drawing.Point(641, 431);
 			this.labelRecoveryAndRestartSafe.Name = "labelRecoveryAndRestartSafe";
 			this.labelRecoveryAndRestartSafe.Size = new System.Drawing.Size(136, 13);
 			this.labelRecoveryAndRestartSafe.TabIndex = 2;
@@ -93,14 +96,13 @@
 			// 
 			// textBox1
 			// 
-			this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox1.Location = new System.Drawing.Point(13, 171);
+			this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+			this.textBox1.Location = new System.Drawing.Point(13, 234);
 			this.textBox1.Multiline = true;
 			this.textBox1.Name = "textBox1";
 			this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-			this.textBox1.Size = new System.Drawing.Size(777, 245);
+			this.textBox1.Size = new System.Drawing.Size(469, 182);
 			this.textBox1.TabIndex = 5;
 			// 
 			// button_SettingsInterop
@@ -115,7 +117,7 @@
 			// 
 			// button_XmlRpc
 			// 
-			this.button_XmlRpc.Location = new System.Drawing.Point(205, 13);
+			this.button_XmlRpc.Location = new System.Drawing.Point(13, 160);
 			this.button_XmlRpc.Name = "button_XmlRpc";
 			this.button_XmlRpc.Size = new System.Drawing.Size(75, 23);
 			this.button_XmlRpc.TabIndex = 7;
@@ -123,11 +125,46 @@
 			this.button_XmlRpc.UseVisualStyleBackColor = true;
 			this.button_XmlRpc.Click += new System.EventHandler(this.button_XmlRpc_Click);
 			// 
+			// treeView1
+			// 
+			this.treeView1.HideSelection = false;
+			this.treeView1.Location = new System.Drawing.Point(258, 13);
+			this.treeView1.Name = "treeView1";
+			this.treeView1.ShowLines = false;
+			this.treeView1.ShowPlusMinus = false;
+			this.treeView1.ShowRootLines = false;
+			this.treeView1.Size = new System.Drawing.Size(187, 113);
+			this.treeView1.TabIndex = 8;
+			this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
+			// 
+			// textBox2
+			// 
+			this.textBox2.Enabled = false;
+			this.textBox2.Location = new System.Drawing.Point(258, 135);
+			this.textBox2.Name = "textBox2";
+			this.textBox2.Size = new System.Drawing.Size(187, 20);
+			this.textBox2.TabIndex = 9;
+			this.textBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox2_KeyPress);
+			// 
+			// inlineCommandsUserControl1
+			// 
+			this.inlineCommandsUserControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.inlineCommandsUserControl1.Location = new System.Drawing.Point(488, 13);
+			this.inlineCommandsUserControl1.Name = "inlineCommandsUserControl1";
+			this.inlineCommandsUserControl1.Padding = new System.Windows.Forms.Padding(2);
+			this.inlineCommandsUserControl1.Size = new System.Drawing.Size(277, 403);
+			this.inlineCommandsUserControl1.TabIndex = 10;
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(802, 445);
+			this.ClientSize = new System.Drawing.Size(777, 445);
+			this.Controls.Add(this.inlineCommandsUserControl1);
+			this.Controls.Add(this.textBox2);
+			this.Controls.Add(this.treeView1);
 			this.Controls.Add(this.button_XmlRpc);
 			this.Controls.Add(this.button_SettingsInterop);
 			this.Controls.Add(this.textBox1);
@@ -141,6 +178,7 @@
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "MainForm";
 			this.Load += new System.EventHandler(this.MainForm_Load);
+			this.Shown += new System.EventHandler(this.MainForm_Shown);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -156,5 +194,8 @@
 		private System.Windows.Forms.TextBox textBox1;
 		private System.Windows.Forms.Button button_SettingsInterop;
 		private System.Windows.Forms.Button button_XmlRpc;
+		private System.Windows.Forms.TreeView treeView1;
+		private System.Windows.Forms.TextBox textBox2;
+		private SharedClasses.InlineCommandsUserControl inlineCommandsUserControl1;
 	}
 }
