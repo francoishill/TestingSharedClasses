@@ -69,6 +69,7 @@
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="PresentationFramework.Aero" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
@@ -108,6 +109,12 @@
     </Compile>
     <Compile Include="..\..\SharedClasses\InlineCommandsUserControl.Designer.cs">
       <Link>InlineCommandsUserControl.Designer.cs</Link>
+    </Compile>
+    <Compile Include="..\..\SharedClasses\InlineCommandsUserControlWPF.xaml.cs">
+      <Link>InlineCommandsUserControlWPF.xaml.cs</Link>
+    </Compile>
+    <Compile Include="..\..\SharedClasses\InlineCommandsWindowWPF.xaml.cs">
+      <Link>InlineCommandsWindowWPF.xaml.cs</Link>
     </Compile>
     <Compile Include="..\..\SharedClasses\MicrosoftOfficeInterop.cs">
       <Link>MicrosoftOfficeInterop.cs</Link>
@@ -239,6 +246,14 @@
   <ItemGroup>
     <Page Include="..\..\SharedClasses\CommandUsercontrol.xaml">
       <Link>CommandUsercontrol.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="..\..\SharedClasses\InlineCommandsUserControlWPF.xaml">
+      <Link>InlineCommandsUserControlWPF.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="..\..\SharedClasses\InlineCommandsWindowWPF.xaml">
+      <Link>InlineCommandsWindowWPF.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="..\..\SharedClasses\OverlayWindow.xaml">

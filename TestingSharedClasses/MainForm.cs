@@ -194,6 +194,12 @@ namespace TestingSharedClasses
 		{
 			textBox2.Enabled = e.Node != null;
 		}
+
+		private void button1_Click(object sender, EventArgs e)
+		{
+			InlineCommandsWindowWPF inlineCommandsWindowWPF = new InlineCommandsWindowWPF();
+			inlineCommandsWindowWPF.ShowDialog();
+		}
 	}
 
 	public class TestSettings
