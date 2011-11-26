@@ -80,6 +80,7 @@
       <HintPath>..\..\..\..\..\..\..\francois\other\dlls\wpf toolkit\system.windows.controls.input.toolkit.dll</HintPath>
     </Reference>
     <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Windows.Presentation" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -91,7 +92,8 @@
     <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
     <Reference Include="WindowsFormsIntegration" />
-    <Reference Include="WPFToolkit">
+    <Reference Include="WPFToolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\..\Francois\Other\DLLs\WPF Toolkit\WPFToolkit.dll</HintPath>
     </Reference>
   </ItemGroup>
