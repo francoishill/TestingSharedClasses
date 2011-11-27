@@ -8,7 +8,8 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
-using ICommandWithHandler = TempNewCommandsManagerClass.ICommandWithHandler;
+using InlineCommands;
+using ICommandWithHandler = InlineCommands.TempNewCommandsManagerClass.ICommandWithHandler;
 
 namespace TestingSharedClasses
 {

@@ -59,9 +59,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\..\Francois\other\DLLs\XmlRpc\CookComputing.XmlRpcV2.dll</HintPath>
     </Reference>
-    <Reference Include="dragonz.actb">
-      <HintPath>..\..\..\..\..\..\..\Francois\Other\DLLs\AutoCompleteTextbox\dragonz.actb.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Microsoft.WindowsAPICodePack, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
