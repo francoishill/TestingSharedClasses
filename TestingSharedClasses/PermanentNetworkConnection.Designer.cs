@@ -106,6 +106,10 @@
 			// comboBoxServerIP
 			// 
 			this.comboBoxServerIP.FormattingEnabled = true;
+			this.comboBoxServerIP.Items.AddRange(new object[] {
+            "10.0.0.11",
+            "10.0.0.200",
+            "127.0.0.1"});
 			this.comboBoxServerIP.Location = new System.Drawing.Point(178, 5);
 			this.comboBoxServerIP.Name = "comboBoxServerIP";
 			this.comboBoxServerIP.Size = new System.Drawing.Size(84, 21);

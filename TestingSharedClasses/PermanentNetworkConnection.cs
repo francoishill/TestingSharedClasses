@@ -61,7 +61,11 @@ namespace TestingSharedClasses
 							break;
 
 						Socket handler = null;
-						try { handler = serverSocket.Accept(); }
+						try
+						{
+							handler = serverSocket.Accept();
+							AppentServerMessage("Connection accepted");
+						}
 						catch (SocketException sexc)
 						{
 							if (NetworkInterop.IsSocketTryingToCloseUponApplicationExit(sexc)) break;
@@ -82,11 +86,12 @@ namespace TestingSharedClasses
 							byte[] receivedBytes = new byte[availableBytes];
 							int actualReceivedLength = handler.Receive(receivedBytes);
 
-							AppentServerMessage(actualReceivedLength.ToString());
+							AppentServerMessage("Number bytes received: " + actualReceivedLength.ToString());
 						}
 					}
 				},
 				false);
+				AppentServerMessage("Server started...");
 				Application.DoEvents();
 			}
 		}
