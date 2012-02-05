@@ -255,7 +255,9 @@ namespace TestingSharedClasses
 										DataSentType.Handshake,
 										handshakeSentFromClientByteArray,
 										out errorMessage))
-										UserMessages.ShowWarningMessage("Unable to send 'handshake' back to server: " + errorMessage);
+										AppendClientMessage("Unable to send 'handshake' back to server: " + errorMessage);
+									else
+										AppendClientMessage("Handshake send back to server.");
 
 							}
 						}
@@ -274,7 +276,7 @@ namespace TestingSharedClasses
 						//byte[] receivedBytes = new byte[numberBytesToRead];
 						//int actualReceivedLength = clientSocket.Receive(receivedBytes, numberBytesToRead, SocketFlags.None);
 
-						AppendClientMessage("Data received..");
+						//AppendClientMessage("Data received..");
 						//AppendClientMessage("Number bytes received: " + actualReceivedLength);
 					}
 				},
