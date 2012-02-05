@@ -54,9 +54,13 @@ namespace TestingSharedClasses
 
 		private void MainForm_Load(object sender, EventArgs e)
 		{
-			GenericSettings.EnsureAllSettingsAreInitialized();
+			//GenericSettings.EnsureAllSettingsAreInitialized();
 			//SharedClassesSettings.EnsureAllSharedClassesSettingsNotNullCreateDefault();
-			inlineCommandsUserControl1.InitializeTreeViewNodes();
+			//inlineCommandsUserControl1.InitializeTreeViewNodes();
+
+			buttonTestPermanentNetworkConnection.PerformClick();
+			buttonTestPermanentNetworkConnection.PerformClick();
+
 			//NetworkingInteropForm networkingInteropForm = new NetworkingInteropForm();
 			//networkingInteropForm.Show();
 			//networkingInteropForm.buttonServer.PerformClick();
@@ -203,6 +207,12 @@ namespace TestingSharedClasses
 		{
 			CommandsWindow inlineCommandsWindowWPF = new CommandsWindow(this);
 			inlineCommandsWindowWPF.ShowDialog();
+		}
+
+		private void buttonTestPermanentNetworkConnection_Click(object sender, EventArgs e)
+		{
+			PermanentNetworkConnection formPNC = new PermanentNetworkConnection();
+			formPNC.Show();
 		}
 	}
 

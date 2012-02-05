@@ -39,8 +39,9 @@
 			this.button_XmlRpc = new System.Windows.Forms.Button();
 			this.treeView1 = new System.Windows.Forms.TreeView();
 			this.textBox2 = new System.Windows.Forms.TextBox();
-			this.inlineCommandsUserControl1 = new SharedClasses.InlineCommandsUserControl();
 			this.button1 = new System.Windows.Forms.Button();
+			this.inlineCommandsUserControl1 = new SharedClasses.InlineCommandsUserControl();
+			this.buttonTestPermanentNetworkConnection = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// buttonNetworkingInterop
@@ -55,7 +56,7 @@
 			// 
 			// buttonAutoCompleteInterop
 			// 
-			this.buttonAutoCompleteInterop.Location = new System.Drawing.Point(13, 43);
+			this.buttonAutoCompleteInterop.Location = new System.Drawing.Point(12, 72);
 			this.buttonAutoCompleteInterop.Name = "buttonAutoCompleteInterop";
 			this.buttonAutoCompleteInterop.Size = new System.Drawing.Size(133, 23);
 			this.buttonAutoCompleteInterop.TabIndex = 1;
@@ -77,7 +78,7 @@
 			// 
 			// buttonSerializationInterop
 			// 
-			this.buttonSerializationInterop.Location = new System.Drawing.Point(13, 73);
+			this.buttonSerializationInterop.Location = new System.Drawing.Point(12, 102);
 			this.buttonSerializationInterop.Name = "buttonSerializationInterop";
 			this.buttonSerializationInterop.Size = new System.Drawing.Size(115, 23);
 			this.buttonSerializationInterop.TabIndex = 3;
@@ -87,7 +88,7 @@
 			// 
 			// buttonTempNewCommandsManagerClass
 			// 
-			this.buttonTempNewCommandsManagerClass.Location = new System.Drawing.Point(13, 102);
+			this.buttonTempNewCommandsManagerClass.Location = new System.Drawing.Point(12, 131);
 			this.buttonTempNewCommandsManagerClass.Name = "buttonTempNewCommandsManagerClass";
 			this.buttonTempNewCommandsManagerClass.Size = new System.Drawing.Size(179, 23);
 			this.buttonTempNewCommandsManagerClass.TabIndex = 4;
@@ -108,7 +109,7 @@
 			// 
 			// button_SettingsInterop
 			// 
-			this.button_SettingsInterop.Location = new System.Drawing.Point(13, 131);
+			this.button_SettingsInterop.Location = new System.Drawing.Point(12, 160);
 			this.button_SettingsInterop.Name = "button_SettingsInterop";
 			this.button_SettingsInterop.Size = new System.Drawing.Size(115, 23);
 			this.button_SettingsInterop.TabIndex = 6;
@@ -118,7 +119,7 @@
 			// 
 			// button_XmlRpc
 			// 
-			this.button_XmlRpc.Location = new System.Drawing.Point(13, 160);
+			this.button_XmlRpc.Location = new System.Drawing.Point(12, 189);
 			this.button_XmlRpc.Name = "button_XmlRpc";
 			this.button_XmlRpc.Size = new System.Drawing.Size(75, 23);
 			this.button_XmlRpc.TabIndex = 7;
@@ -147,6 +148,16 @@
 			this.textBox2.TabIndex = 9;
 			this.textBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox2_KeyPress);
 			// 
+			// button1
+			// 
+			this.button1.Location = new System.Drawing.Point(532, 73);
+			this.button1.Name = "button1";
+			this.button1.Size = new System.Drawing.Size(158, 23);
+			this.button1.TabIndex = 11;
+			this.button1.Text = "Inline commands (new)";
+			this.button1.UseVisualStyleBackColor = true;
+			this.button1.Click += new System.EventHandler(this.button1_Click);
+			// 
 			// inlineCommandsUserControl1
 			// 
 			this.inlineCommandsUserControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -159,21 +170,22 @@
 			this.inlineCommandsUserControl1.Size = new System.Drawing.Size(277, 403);
 			this.inlineCommandsUserControl1.TabIndex = 10;
 			// 
-			// button1
+			// buttonTestPermanentNetworkConnection
 			// 
-			this.button1.Location = new System.Drawing.Point(532, 73);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(158, 23);
-			this.button1.TabIndex = 11;
-			this.button1.Text = "Inline commands (new)";
-			this.button1.UseVisualStyleBackColor = true;
-			this.button1.Click += new System.EventHandler(this.button1_Click);
+			this.buttonTestPermanentNetworkConnection.Location = new System.Drawing.Point(13, 43);
+			this.buttonTestPermanentNetworkConnection.Name = "buttonTestPermanentNetworkConnection";
+			this.buttonTestPermanentNetworkConnection.Size = new System.Drawing.Size(195, 23);
+			this.buttonTestPermanentNetworkConnection.TabIndex = 12;
+			this.buttonTestPermanentNetworkConnection.Text = "Test &Permanent Network Connection";
+			this.buttonTestPermanentNetworkConnection.UseVisualStyleBackColor = true;
+			this.buttonTestPermanentNetworkConnection.Click += new System.EventHandler(this.buttonTestPermanentNetworkConnection_Click);
 			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(777, 445);
+			this.Controls.Add(this.buttonTestPermanentNetworkConnection);
 			this.Controls.Add(this.button1);
 			this.Controls.Add(this.inlineCommandsUserControl1);
 			this.Controls.Add(this.textBox2);
@@ -211,5 +223,6 @@
 		private System.Windows.Forms.TextBox textBox2;
 		private SharedClasses.InlineCommandsUserControl inlineCommandsUserControl1;
 		private System.Windows.Forms.Button button1;
+		private System.Windows.Forms.Button buttonTestPermanentNetworkConnection;
 	}
 }
