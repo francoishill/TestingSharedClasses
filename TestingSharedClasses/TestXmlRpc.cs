@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CookComputing.XmlRpc;
+using SharedClasses;
 
 namespace TestingSharedClasses
 {
@@ -21,10 +22,11 @@ namespace TestingSharedClasses
 			InitializeComponent();
 
 			comboBox1.Items.Clear();
-			SharedClassesSettings.EnsureAllSharedClassesSettingsNotNullCreateDefault();
+			//SharedClassesSettings.EnsureAllSharedClassesSettingsNotNullCreateDefault();
+			GenericSettings.EnsureAllSettingsAreInitialized();
 			string[] urlList = new string[0];
-			if (SharedClassesSettings.tracXmlRpcInteropSettings.ListedXmlRpcUrls != null)
-				urlList = SharedClassesSettings.tracXmlRpcInteropSettings.ListedXmlRpcUrls.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+			if (GlobalSettings.TracXmlRpcInteropSettings.Instance.ListedXmlRpcUrls != null)
+				urlList = GlobalSettings.TracXmlRpcInteropSettings.Instance.ListedXmlRpcUrls.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
 			foreach (string url in urlList)
 				comboBox1.Items.Add(url);
 		}

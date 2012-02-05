@@ -76,6 +76,7 @@ namespace TestingSharedClasses
 			{
 				//TODO: There is some issue with the second time a file is sent (on the server side).
 				NetworkInterop.StartServer_FileStream(
+					null,
 					out listeningSocket,
 					this,
 					TextFeedbackEvent: textFeedback,
@@ -100,6 +101,7 @@ namespace TestingSharedClasses
 				else
 				{
 					NetworkInterop.TransferFile_FileStream(
+						null,
 						fileToSend,
 						out senderSocket,
 

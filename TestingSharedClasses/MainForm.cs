@@ -8,8 +8,9 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
-using InlineCommands;
-using ICommandWithHandler = InlineCommands.TempNewCommandsManagerClass.ICommandWithHandler;
+using InlineCommandToolkit;
+using SharedClasses;
+using ICommandWithHandler = InlineCommandToolkit.InlineCommands.ICommandWithHandler;
 
 namespace TestingSharedClasses
 {
@@ -53,7 +54,8 @@ namespace TestingSharedClasses
 
 		private void MainForm_Load(object sender, EventArgs e)
 		{
-			SharedClassesSettings.EnsureAllSharedClassesSettingsNotNullCreateDefault();
+			GenericSettings.EnsureAllSettingsAreInitialized();
+			//SharedClassesSettings.EnsureAllSharedClassesSettingsNotNullCreateDefault();
 			inlineCommandsUserControl1.InitializeTreeViewNodes();
 			//NetworkingInteropForm networkingInteropForm = new NetworkingInteropForm();
 			//networkingInteropForm.Show();
@@ -138,7 +140,7 @@ namespace TestingSharedClasses
 
 			treeView1.Nodes.Clear();
 			textBox2.Enabled = false;
-			foreach (ICommandWithHandler comm in TempNewCommandsManagerClass.ListOfInitializedCommandInterfaces)
+			foreach (ICommandWithHandler comm in CommandsManagerClass.ListOfInitializedCommandInterfaces)
 				treeView1.Nodes.Add(new TreeNode()
 				{
 					Name = comm.CommandName,
@@ -183,9 +185,10 @@ namespace TestingSharedClasses
 				if (treeView1.SelectedNode != null && treeView1.SelectedNode.Tag is ICommandWithHandler)
 				{
 					ICommandWithHandler comm = treeView1.SelectedNode.Tag as ICommandWithHandler;
-					TempNewCommandsManagerClass.PerformCommandFromString(
+					CommandsManagerClass.PerformCommandFromString(
 						comm,
 						textFeedbackEvent,
+						null,
 						textBox2.Text);
 				}
 			}
@@ -198,7 +201,7 @@ namespace TestingSharedClasses
 
 		private void button1_Click(object sender, EventArgs e)
 		{
-			InlineCommandsWindowWPF inlineCommandsWindowWPF = new InlineCommandsWindowWPF();
+			CommandsWindow inlineCommandsWindowWPF = new CommandsWindow(this);
 			inlineCommandsWindowWPF.ShowDialog();
 		}
 	}
