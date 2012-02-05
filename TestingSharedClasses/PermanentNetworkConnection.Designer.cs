@@ -70,6 +70,7 @@
 			this.textBoxServerMessages.Location = new System.Drawing.Point(3, 32);
 			this.textBoxServerMessages.Multiline = true;
 			this.textBoxServerMessages.Name = "textBoxServerMessages";
+			this.textBoxServerMessages.ScrollBars = System.Windows.Forms.ScrollBars.Both;
 			this.textBoxServerMessages.Size = new System.Drawing.Size(320, 257);
 			this.textBoxServerMessages.TabIndex = 2;
 			// 
@@ -115,6 +116,7 @@
 			this.textBoxClientMessages.Location = new System.Drawing.Point(3, 32);
 			this.textBoxClientMessages.Multiline = true;
 			this.textBoxClientMessages.Name = "textBoxClientMessages";
+			this.textBoxClientMessages.ScrollBars = System.Windows.Forms.ScrollBars.Both;
 			this.textBoxClientMessages.Size = new System.Drawing.Size(340, 257);
 			this.textBoxClientMessages.TabIndex = 3;
 			// 
