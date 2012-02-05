@@ -32,8 +32,8 @@
 			this.buttonStartClient = new System.Windows.Forms.Button();
 			this.textBoxServerMessages = new System.Windows.Forms.TextBox();
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-			this.textBoxClientMessages = new System.Windows.Forms.TextBox();
 			this.comboBoxServerIP = new System.Windows.Forms.ComboBox();
+			this.textBoxClientMessages = new System.Windows.Forms.TextBox();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
@@ -92,17 +92,6 @@
 			this.splitContainer1.SplitterDistance = 326;
 			this.splitContainer1.TabIndex = 3;
 			// 
-			// textBoxClientMessages
-			// 
-			this.textBoxClientMessages.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBoxClientMessages.Location = new System.Drawing.Point(3, 32);
-			this.textBoxClientMessages.Multiline = true;
-			this.textBoxClientMessages.Name = "textBoxClientMessages";
-			this.textBoxClientMessages.Size = new System.Drawing.Size(340, 257);
-			this.textBoxClientMessages.TabIndex = 3;
-			// 
 			// comboBoxServerIP
 			// 
 			this.comboBoxServerIP.FormattingEnabled = true;
@@ -114,7 +103,18 @@
 			this.comboBoxServerIP.Name = "comboBoxServerIP";
 			this.comboBoxServerIP.Size = new System.Drawing.Size(84, 21);
 			this.comboBoxServerIP.TabIndex = 4;
-			this.comboBoxServerIP.Text = "10.0.0.11";
+			this.comboBoxServerIP.Text = "10.0.0.200";
+			// 
+			// textBoxClientMessages
+			// 
+			this.textBoxClientMessages.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBoxClientMessages.Location = new System.Drawing.Point(3, 32);
+			this.textBoxClientMessages.Multiline = true;
+			this.textBoxClientMessages.Name = "textBoxClientMessages";
+			this.textBoxClientMessages.Size = new System.Drawing.Size(340, 257);
+			this.textBoxClientMessages.TabIndex = 3;
 			// 
 			// PermanentNetworkConnection
 			// 
