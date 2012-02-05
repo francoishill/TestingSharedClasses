@@ -34,6 +34,7 @@
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
 			this.comboBoxServerIP = new System.Windows.Forms.ComboBox();
 			this.textBoxClientMessages = new System.Windows.Forms.TextBox();
+			this.buttonSERVER_SendByte = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
@@ -80,6 +81,7 @@
 			// 
 			// splitContainer1.Panel1
 			// 
+			this.splitContainer1.Panel1.Controls.Add(this.buttonSERVER_SendByte);
 			this.splitContainer1.Panel1.Controls.Add(this.textBoxServerMessages);
 			this.splitContainer1.Panel1.Controls.Add(this.buttonStartServer);
 			// 
@@ -116,6 +118,16 @@
 			this.textBoxClientMessages.Size = new System.Drawing.Size(340, 257);
 			this.textBoxClientMessages.TabIndex = 3;
 			// 
+			// buttonSERVER_SendByte
+			// 
+			this.buttonSERVER_SendByte.Location = new System.Drawing.Point(84, 3);
+			this.buttonSERVER_SendByte.Name = "buttonSERVER_SendByte";
+			this.buttonSERVER_SendByte.Size = new System.Drawing.Size(75, 23);
+			this.buttonSERVER_SendByte.TabIndex = 3;
+			this.buttonSERVER_SendByte.Text = "Send byte";
+			this.buttonSERVER_SendByte.UseVisualStyleBackColor = true;
+			this.buttonSERVER_SendByte.Click += new System.EventHandler(this.buttonSERVER_SendByte_Click);
+			// 
 			// PermanentNetworkConnection
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -142,5 +154,6 @@
 		private System.Windows.Forms.SplitContainer splitContainer1;
 		private System.Windows.Forms.TextBox textBoxClientMessages;
 		private System.Windows.Forms.ComboBox comboBoxServerIP;
+		private System.Windows.Forms.Button buttonSERVER_SendByte;
 	}
 }

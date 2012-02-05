@@ -39,6 +39,7 @@ namespace TestingSharedClasses
 		}
 
 		Socket serverSocket;
+		Socket currentServerHandler = null;
 		Socket clientSocket;
 		NetworkStream clientNetworkStream;
 		BinaryWriter clientBinaryWriter;
@@ -60,10 +61,9 @@ namespace TestingSharedClasses
 						if (IsBusyClosing)
 							break;
 
-						Socket handler = null;
 						try
 						{
-							handler = serverSocket.Accept();
+							currentServerHandler = serverSocket.Accept();
 							AppentServerMessage("Connection accepted");
 						}
 						catch (SocketException sexc)
@@ -72,7 +72,7 @@ namespace TestingSharedClasses
 							else UserMessages.ShowErrorMessage("SocketException occurred: " + sexc.Message);
 						}
 
-						if (handler == null) continue;
+						if (currentServerHandler == null) continue;
 
 						int availableBytes;
 						while (true)
@@ -80,11 +80,11 @@ namespace TestingSharedClasses
 							if (IsBusyClosing)
 								break;
 
-							if (!NetworkInterop.GetBytesAvailable(ref handler, out availableBytes))
+							if (!NetworkInterop.GetBytesAvailable(ref currentServerHandler, out availableBytes))
 								continue;
 
 							byte[] receivedBytes = new byte[availableBytes];
-							int actualReceivedLength = handler.Receive(receivedBytes);
+							int actualReceivedLength = currentServerHandler.Receive(receivedBytes);
 
 							AppentServerMessage("Number bytes received: " + actualReceivedLength.ToString());
 						}
@@ -116,10 +116,32 @@ namespace TestingSharedClasses
 				}
 				clientNetworkStream = new NetworkStream(clientSocket);
 				clientBinaryWriter = new BinaryWriter(clientNetworkStream);
+
+				ThreadingInterop.PerformVoidFunctionSeperateThread(() =>
+				{
+					while (true)
+					{
+						if (IsBusyClosing)
+							break;
+
+						//FileStream fileStreamIn = null;// new FileStream(defaultFilePathForSavingForClient, FileMode.Create);
+						MemoryStream memoryStreamForInfo = new MemoryStream();
+
+						int availableBytes;
+						if (!NetworkInterop.GetBytesAvailable(ref clientSocket, out availableBytes))
+							continue;
+
+						byte[] receivedBytes = new byte[availableBytes];
+						int actualReceivedLength = clientSocket.Receive(receivedBytes);
+
+						AppentClientMessage("Number bytes received: " + actualReceivedLength);
+					}
+				},
+				false);
 			}
 
 			clientBinaryWriter.Write(3);
-
+			clientBinaryWriter.Flush();
 
 			//using (NetworkStream networkStream = new NetworkStream(clientSocket))
 			//{
@@ -158,6 +180,18 @@ namespace TestingSharedClasses
 				textBoxClientMessages.Invoke(appendAction);
 			else
 				appendAction();
+		}
+
+		private void buttonSERVER_SendByte_Click(object sender, EventArgs e)
+		{
+			if (currentServerHandler == null)
+			{
+				UserMessages.ShowWarningMessage("Cannot send data with no client connection");
+				return;
+			}
+
+			NetworkStream ns = new NetworkStream(currentServerHandler);
+			ns.WriteByte(7);
 		}
 	}
 }
