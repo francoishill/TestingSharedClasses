@@ -33,6 +33,7 @@
 			this.textBoxServerMessages = new System.Windows.Forms.TextBox();
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
 			this.textBoxClientMessages = new System.Windows.Forms.TextBox();
+			this.comboBoxServerIP = new System.Windows.Forms.ComboBox();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
@@ -84,6 +85,7 @@
 			// 
 			// splitContainer1.Panel2
 			// 
+			this.splitContainer1.Panel2.Controls.Add(this.comboBoxServerIP);
 			this.splitContainer1.Panel2.Controls.Add(this.textBoxClientMessages);
 			this.splitContainer1.Panel2.Controls.Add(this.buttonStartClient);
 			this.splitContainer1.Size = new System.Drawing.Size(676, 292);
@@ -100,6 +102,15 @@
 			this.textBoxClientMessages.Name = "textBoxClientMessages";
 			this.textBoxClientMessages.Size = new System.Drawing.Size(340, 257);
 			this.textBoxClientMessages.TabIndex = 3;
+			// 
+			// comboBoxServerIP
+			// 
+			this.comboBoxServerIP.FormattingEnabled = true;
+			this.comboBoxServerIP.Location = new System.Drawing.Point(178, 5);
+			this.comboBoxServerIP.Name = "comboBoxServerIP";
+			this.comboBoxServerIP.Size = new System.Drawing.Size(84, 21);
+			this.comboBoxServerIP.TabIndex = 4;
+			this.comboBoxServerIP.Text = "10.0.0.11";
 			// 
 			// PermanentNetworkConnection
 			// 
@@ -126,5 +137,6 @@
 		private System.Windows.Forms.TextBox textBoxServerMessages;
 		private System.Windows.Forms.SplitContainer splitContainer1;
 		private System.Windows.Forms.TextBox textBoxClientMessages;
+		private System.Windows.Forms.ComboBox comboBoxServerIP;
 	}
 }
