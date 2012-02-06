@@ -330,12 +330,12 @@
 //        socketToInitialize.NoDelay = true;
 //        socketToInitialize.Ttl = 112;
 //        socketToInitialize.SendBufferSize = 1024 * 1024 * 10;
-//        socketToInitialize.Connect(NetworkInterop.GetLocalIPEndPoint(11000));
+//        socketToInitialize.BeginConnect_Ext(NetworkInterop.GetLocalIPEndPoint(11000));
 //        return true;
 //      }
 //      catch (SocketException se)
 //      {
-//        MessageBox.Show("SocketException Connect()" + se.Message + Environment.NewLine + se.TargetSite);
+//        MessageBox.Show("SocketException BeginConnect_Ext()" + se.Message + Environment.NewLine + se.TargetSite);
 //        return false;
 //      }
 //    }

@@ -58,7 +58,10 @@ namespace TestingSharedClasses
 			//SharedClassesSettings.EnsureAllSharedClassesSettingsNotNullCreateDefault();
 			//inlineCommandsUserControl1.InitializeTreeViewNodes();
 
-			buttonTestPermanentNetworkConnection.PerformClick();
+			//CommandsWindow cw = new CommandsWindow(this);
+			//cw.Show();
+
+			//buttonTestPermanentNetworkConnection.PerformClick();
 			buttonTestPermanentNetworkConnection.PerformClick();
 
 			//NetworkingInteropForm networkingInteropForm = new NetworkingInteropForm();

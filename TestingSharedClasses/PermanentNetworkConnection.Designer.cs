@@ -32,9 +32,9 @@
 			this.buttonStartClient = new System.Windows.Forms.Button();
 			this.textBoxServerMessages = new System.Windows.Forms.TextBox();
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+			this.buttonSERVER_SendByte = new System.Windows.Forms.Button();
 			this.comboBoxServerIP = new System.Windows.Forms.ComboBox();
 			this.textBoxClientMessages = new System.Windows.Forms.TextBox();
-			this.buttonSERVER_SendByte = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
@@ -95,6 +95,16 @@
 			this.splitContainer1.SplitterDistance = 326;
 			this.splitContainer1.TabIndex = 3;
 			// 
+			// buttonSERVER_SendByte
+			// 
+			this.buttonSERVER_SendByte.Location = new System.Drawing.Point(84, 3);
+			this.buttonSERVER_SendByte.Name = "buttonSERVER_SendByte";
+			this.buttonSERVER_SendByte.Size = new System.Drawing.Size(75, 23);
+			this.buttonSERVER_SendByte.TabIndex = 3;
+			this.buttonSERVER_SendByte.Text = "Send byte";
+			this.buttonSERVER_SendByte.UseVisualStyleBackColor = true;
+			this.buttonSERVER_SendByte.Click += new System.EventHandler(this.buttonSERVER_SendByte_Click);
+			// 
 			// comboBoxServerIP
 			// 
 			this.comboBoxServerIP.FormattingEnabled = true;
@@ -120,16 +130,6 @@
 			this.textBoxClientMessages.Size = new System.Drawing.Size(340, 257);
 			this.textBoxClientMessages.TabIndex = 3;
 			// 
-			// buttonSERVER_SendByte
-			// 
-			this.buttonSERVER_SendByte.Location = new System.Drawing.Point(84, 3);
-			this.buttonSERVER_SendByte.Name = "buttonSERVER_SendByte";
-			this.buttonSERVER_SendByte.Size = new System.Drawing.Size(75, 23);
-			this.buttonSERVER_SendByte.TabIndex = 3;
-			this.buttonSERVER_SendByte.Text = "Send byte";
-			this.buttonSERVER_SendByte.UseVisualStyleBackColor = true;
-			this.buttonSERVER_SendByte.Click += new System.EventHandler(this.buttonSERVER_SendByte_Click);
-			// 
 			// PermanentNetworkConnection
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -138,6 +138,7 @@
 			this.Controls.Add(this.splitContainer1);
 			this.Name = "PermanentNetworkConnection";
 			this.Text = "PermanentNetworkConnection";
+			this.Load += new System.EventHandler(this.PermanentNetworkConnection_Load);
 			this.splitContainer1.Panel1.ResumeLayout(false);
 			this.splitContainer1.Panel1.PerformLayout();
 			this.splitContainer1.Panel2.ResumeLayout(false);

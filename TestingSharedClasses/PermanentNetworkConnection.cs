@@ -5,8 +5,10 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -19,6 +21,89 @@ namespace TestingSharedClasses
 			InitializeComponent();
 
 			this.Disposed += new EventHandler(PermanentNetworkConnection_Disposed);
+		}
+
+		private void PermanentNetworkConnection_Load(object sender, EventArgs e)
+		{
+			//tmp();
+			TcpClient client = new TcpClient();
+			string errMsg;
+			if (client.BeginConnect_Ext(new IPEndPoint(IPAddress.Parse("10.0.0.200"), 80), 3000, out errMsg))
+			{
+				NetworkStream ns = client.GetStream();
+				//IAsyncResult ar = ns.BeginWrite(
+				//	new byte[0],//buffer
+				//	0,//Offset
+				//	0,//Size
+				//	null,
+				//	null);
+
+				IAsyncResult ar = ns.BeginRead(
+					new byte[0],//buffer
+					0,//Offset
+					0,//Size
+					null,
+					null);
+				if (ar.AsyncWaitHandle.WaitOne(3000))//Timeout
+					UserMessages.ShowInfoMessage("Successfully sent");
+				else
+					UserMessages.ShowErrorMessage("Failure to send");
+			}
+			else
+				UserMessages.ShowErrorMessage("Failure: " + errMsg);
+		}
+
+		#region Temp comments
+		//private void tmp()
+		//{
+		//	//Whenever client is online it should connect to server:
+		//	//Client sends packet to server (using GUID)
+		//	//Server receives packet
+		//	//Server sends acknowledgement back
+		//	//Client receives acknowledgement
+		//	//Client sends ANOTHER acknowledgement
+		//	//Server receives it (connection established)
+
+		//	//Socket s = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+		//	TcpClient client = new TcpClient();
+		//	try
+		//	{
+		//		IAsyncResult ar = client.BeginConnect("fjh.dyndns.org", 80, OnConnected, null);
+		//		while (!ar.IsCompleted) { }
+
+		//		if (ar.AsyncState != null)
+		//			UserMessages.ShowInfoMessage("AsyncState = " + ar.AsyncState.ToString());
+
+		//		if (client.Connected)
+		//			UserMessages.ShowInfoMessage("Success");
+		//		else
+		//			UserMessages.ShowInfoMessage("Error: ");
+		//	}
+		//	catch (Exception exc)
+		//	{
+		//		UserMessages.ShowErrorMessage(exc.Message);
+		//	}
+		//	//while (!t.GetAwaiter().IsCompleted) { }
+		//	//if (t.IsFaulted || t.IsCanceled)
+		//	//	UserMessages.ShowErrorMessage(t.Exception.InnerException.Message);
+		//	//else
+		//	//	UserMessages.ShowInfoMessage("Success: ");
+		//	////IPAddress ipAddress = NetworkInterop.GetIPAddressFromString("fjh.dyndns.org", 1000);
+
+		//	////if (ipAddress != null)
+		//	//{
+		//	//	//bool success = s.BeginConnect_Ext(new IPEndPoint(ipAddress, 80), TimeSpan.FromMilliseconds(1000));
+		//	//	bool success = s.BeginConnect_Ext(new IPEndPoint(IPAddress.Parse("192.168.0.123"), 80), TimeSpan.FromMilliseconds(1000));
+		//	//	if (success)
+		//	//	{
+		//	//	}
+		//	//}
+		//}
+		#endregion
+
+		private static void OnConnected(IAsyncResult ar)
+		{
+			Console.WriteLine("Connected");
 		}
 
 		private bool IsBusyClosing = false;
@@ -57,7 +142,7 @@ namespace TestingSharedClasses
 					DataSentType.Handshake,
 					handshakeSentFromServerByteArray,
 					out errorMessage))
-				{}//UserMessages.ShowWarningMessage("Could not perform handshake to server: " + errorMessage);
+				{ }//UserMessages.ShowWarningMessage("Could not perform handshake to server: " + errorMessage);
 				else
 				{
 					NetworkStream ns = new NetworkStream(currentServerHandler);
@@ -107,7 +192,7 @@ namespace TestingSharedClasses
 
 		Socket serverSocket;
 		Socket currentServerHandler = null;
-		Timer serverContinualHandshakeTimer;
+		System.Windows.Forms.Timer serverContinualHandshakeTimer;
 		Socket clientSocket;
 		NetworkStream clientNetworkStream;
 		BinaryWriter clientBinaryWriter;
@@ -142,7 +227,7 @@ namespace TestingSharedClasses
 
 						if (currentServerHandler == null) continue;
 
-						serverContinualHandshakeTimer = new Timer();
+						serverContinualHandshakeTimer = new System.Windows.Forms.Timer();
 						serverContinualHandshakeTimer.Interval = 2000;
 						serverContinualHandshakeTimer.Tick += new EventHandler(serverContinualHandshakeTimer_Tick);
 						serverContinualHandshakeTimer.Start();
