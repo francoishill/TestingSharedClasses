@@ -120,7 +120,7 @@ namespace TestingSharedClasses
 					serverSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 					NetworkInterop.SetupServerSocketSettings(
 						ref serverSocket,
-						103,
+						11000,
 						1024,
 						100);
 
@@ -191,7 +191,7 @@ namespace TestingSharedClasses
 				if (!NetworkInterop.ConnectToServer(
 					out clientSocket,
 					ipAddress: System.Net.IPAddress.Parse(comboBoxServerIP.Text),//"10.0.0.200"),
-					listeningPort: 103))
+					listeningPort: 11000))
 				{
 					try
 					{
