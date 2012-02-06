@@ -190,7 +190,7 @@ namespace TestingSharedClasses
 			{
 				if (!NetworkInterop.ConnectToServer(
 					out clientSocket,
-					ipAddress: System.Net.IPAddress.Parse(comboBoxServerIP.Text),//"10.0.0.200"),
+					ipAddress: NetworkInterop.GetIPAddressFromString(comboBoxServerIP.Text),//"10.0.0.200"),
 					listeningPort: 11000))
 				{
 					try
