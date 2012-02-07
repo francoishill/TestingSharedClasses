@@ -25,6 +25,11 @@ namespace TestingSharedClasses
 
 		private void PermanentNetworkConnection_Load(object sender, EventArgs e)
 		{
+			//Check out the following links for async TcpClient:
+			//http://robjdavey.wordpress.com/2011/02/11/asynchronous-tcp-client-example/
+			//or rather (improved of the above)
+			//http://robjdavey.wordpress.com/2011/07/29/improved-asynchronous-tcp-client-example/
+
 			//tmp();
 			TcpClient client = new TcpClient();
 			string errMsg;
