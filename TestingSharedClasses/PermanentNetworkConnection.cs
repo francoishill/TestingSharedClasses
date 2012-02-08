@@ -210,7 +210,7 @@ namespace TestingSharedClasses
 					serverSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 					NetworkInterop.SetupServerSocketSettings(
 						ref serverSocket,
-						11000,
+						115,
 						1024,
 						100);
 
@@ -276,12 +276,17 @@ namespace TestingSharedClasses
 
 		private void buttonStartClient_Click(object sender, EventArgs e)
 		{
+			//Open (firewall work) ports
+			//115 (SFTP)
+			//5632 (PCAnywhere)
+			//To check other, get ip (using command-prompt and ping fjh.dyndns.org) and use it on website = http://www.yougetsignal.com/tools/open-ports/
+			//Have to configure them on Router (Virtual Server->Port Forwarding), AND ALSO in antivirus
 			if (clientSocket == null)
 			{
 				if (!NetworkInterop.ConnectToServer(
 					out clientSocket,
 					ipAddress: NetworkInterop.GetIPAddressFromString(comboBoxServerIP.Text),//"10.0.0.200"),
-					listeningPort: 11000))
+					listeningPort: 115))
 				{
 					try
 					{

@@ -111,12 +111,13 @@
 			this.comboBoxServerIP.Items.AddRange(new object[] {
             "10.0.0.11",
             "10.0.0.200",
-            "127.0.0.1"});
+            "127.0.0.1",
+            "fjh.dyndns.org"});
 			this.comboBoxServerIP.Location = new System.Drawing.Point(178, 5);
 			this.comboBoxServerIP.Name = "comboBoxServerIP";
 			this.comboBoxServerIP.Size = new System.Drawing.Size(84, 21);
 			this.comboBoxServerIP.TabIndex = 4;
-			this.comboBoxServerIP.Text = "10.0.0.200";
+			this.comboBoxServerIP.Text = "fjh.dyndns.org";
 			// 
 			// textBoxClientMessages
 			// 
