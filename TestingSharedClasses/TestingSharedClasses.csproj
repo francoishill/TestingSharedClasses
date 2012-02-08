@@ -151,7 +151,6 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="MyEventArgs.cs" />
     <Compile Include="NetworkingInteropForm.cs">
       <SubType>Form</SubType>
     </Compile>

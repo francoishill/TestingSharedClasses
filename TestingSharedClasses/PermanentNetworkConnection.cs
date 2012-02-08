@@ -23,6 +23,7 @@ namespace TestingSharedClasses
 			this.Disposed += new EventHandler(PermanentNetworkConnection_Disposed);
 		}
 
+		Server s;
 		private void PermanentNetworkConnection_Load(object sender, EventArgs e)
 		{
 			//Check out the following links for async TcpClient:
@@ -30,43 +31,58 @@ namespace TestingSharedClasses
 			//or rather (improved of the above)
 			//http://robjdavey.wordpress.com/2011/07/29/improved-asynchronous-tcp-client-example/
 
-			//tmp();
-			TcpClient client = new TcpClient();
-			string errMsg;
-			if (client.BeginConnect_Ext(new IPEndPoint(IPAddress.Parse("10.0.0.200"), 80), 3000, out errMsg))
+			s = new Server();
+			s.TextFeedbackEvent += (snder, evtargs) =>
 			{
-				NetworkStream ns = client.GetStream();
-				//IAsyncResult ar = ns.BeginWrite(
-				//	new byte[0],//buffer
-				//	0,//Offset
-				//	0,//Size
-				//	null,
-				//	null);
+				AppendServerMessage(evtargs.FeedbackText);
+			};
+			s.StartServer(115);
 
-				IAsyncResult ar = ns.BeginRead(
-					new byte[0],//buffer
-					0,//Offset
-					0,//Size
-					null,
-					null);
-				if (ar.AsyncWaitHandle.WaitOne(3000))//Timeout
-					UserMessages.ShowInfoMessage("Successfully sent");
-				else
-					UserMessages.ShowErrorMessage("Failure to send");
-			}
-			else
-				UserMessages.ShowErrorMessage("Failure: " + errMsg);
+			System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
+			timer.Interval = 3000;
+			timer.Tick += delegate
+			{
+				s.ctd.Send("Testing...");
+			};
+			timer.Start();
+
+			////tmp();
+			//TcpClient client = new TcpClient();
+			//string errMsg;
+			//if (client.BeginConnect_Ext(new IPEndPoint(IPAddress.Parse("10.0.0.200"), 80), 3000, out errMsg))
+			//{
+			//	NetworkStream ns = client.GetStream();
+			//	//IAsyncResult ar = ns.BeginWrite(
+			//	//	new byte[0],//buffer
+			//	//	0,//Offset
+			//	//	0,//Size
+			//	//	null,
+			//	//	null);
+
+			//	IAsyncResult ar = ns.BeginRead(
+			//		new byte[0],//buffer
+			//		0,//Offset
+			//		0,//Size
+			//		null,
+			//		null);
+			//	if (ar.AsyncWaitHandle.WaitOne(3000))//Timeout
+			//		UserMessages.ShowInfoMessage("Successfully sent");
+			//	else
+			//		UserMessages.ShowErrorMessage("Failure to send");
+			//}
+			//else
+			//	UserMessages.ShowErrorMessage("Failure: " + errMsg);
 		}
 
 		#region Temp comments
 		//private void tmp()
 		//{
 		//	//Whenever client is online it should connect to server:
-		//	//Client sends packet to server (using GUID)
+		//	//ClientOnServerSide sends packet to server (using GUID)
 		//	//Server receives packet
 		//	//Server sends acknowledgement back
-		//	//Client receives acknowledgement
-		//	//Client sends ANOTHER acknowledgement
+		//	//ClientOnServerSide receives acknowledgement
+		//	//ClientOnServerSide sends ANOTHER acknowledgement
 		//	//Server receives it (connection established)
 
 		//	//Socket s = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
@@ -274,8 +290,19 @@ namespace TestingSharedClasses
 			}
 		}
 
+		//Client c;
+		ClientOnClientSide C;
 		private void buttonStartClient_Click(object sender, EventArgs e)
 		{
+			//c = new Client(s, new TcpClient("localhost", 115));
+			C = new ClientOnClientSide();
+			C.TextFeedbackEvent += (snder, evtargs) =>
+			{
+				AppendClientMessage(evtargs.FeedbackText);
+			};
+			C.tmp();
+			return;
+
 			//Open (firewall work) ports
 			//115 (SFTP)
 			//5632 (PCAnywhere)
@@ -367,7 +394,7 @@ namespace TestingSharedClasses
 
 						//while (clientSocket.Available < numberBytesToRead) { if (IsBusyClosing) break; }
 
-						////Client reading:
+						////ClientOnServerSide reading:
 						//byte[] receivedBytes = new byte[numberBytesToRead];
 						//int actualReceivedLength = clientSocket.Receive(receivedBytes, numberBytesToRead, SocketFlags.None);
 
@@ -461,6 +488,10 @@ namespace TestingSharedClasses
 
 		private void buttonSERVER_SendByte_Click(object sender, EventArgs e)
 		{
+			//string prompt = UserMessages.Prompt("Enter message to send to clients");
+			//s.ctd.Send(prompt);
+
+			return;
 			if (currentServerHandler == null)
 			{
 				UserMessages.ShowWarningMessage("Cannot send data with no client connection");
@@ -469,6 +500,11 @@ namespace TestingSharedClasses
 
 			//NetworkStream ns = new NetworkStream(currentServerHandler);
 			//ns.WriteByte(7);
+		}
+
+		private void PermanentNetworkConnection_FormClosing(object sender, FormClosingEventArgs e)
+		{
+			s.StopServer();
 		}
 	}
 }

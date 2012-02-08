@@ -21,7 +21,7 @@ namespace ChatNetwork
         private ArrayList formArray = new ArrayList();
         private ArrayList threadArray = new ArrayList();
         public delegate void ChangedEventHandler(object sender, EventArgs e);
-        public event ChangedEventHandler Changed;
+		//public event ChangedEventHandler Changed;
         public delegate void SetListBoxItem(String str, String type); 
         
         /// <summary>
@@ -32,7 +32,7 @@ namespace ChatNetwork
             InitializeComponent();
             
             // Add Event to handle when a client is connected
-            Changed += new ChangedEventHandler(ClientAdded);
+			//Changed += new ChangedEventHandler(ClientAdded);
 
             // Add node in Tree View
             TreeNode node;
@@ -59,7 +59,7 @@ namespace ChatNetwork
         }
 
         /// <summary>
-        /// Server listens on the given port and accepts the connection from Client.
+        /// Server listens on the given port and accepts the connection from ClientOnServerSide.
         /// As soon as the connection id made a dialog box opens up for Chatting.
         /// </summary>
         public void StartListen() {
@@ -69,11 +69,11 @@ namespace ChatNetwork
             tcpServer = new TcpListener(localAddr, Int32.Parse(tbPortNumber.Text));
             tcpServer.Start();
 
-            // Keep on accepting Client Connection
+            // Keep on accepting ClientOnServerSide Connection
             while (true)
             {
                 
-                // New Client connected, call Event to handle it.
+                // New ClientOnServerSide connected, call Event to handle it.
                 Thread t = new Thread(new ParameterizedThreadStart(NewClient));
                 tcpClient = tcpServer.AcceptTcpClient();
                 t.Start(tcpClient); 
@@ -156,7 +156,7 @@ namespace ChatNetwork
         }
 
         /// <summary>
-        /// Event Fired when a Client gets connected. Following actions are performed
+        /// Event Fired when a ClientOnServerSide gets connected. Following actions are performed
         /// 1. Update Tree view
         /// 2. Open a chat box to chat with client.
         /// </summary>
@@ -200,12 +200,12 @@ namespace ChatNetwork
             }
             else
             {
-                // If type is Add, the add Client info in Tree View
+                // If type is Add, the add ClientOnServerSide info in Tree View
                 if (type.Equals("Add"))
                 {
                     this.tvClientList.Nodes[0].Nodes.Add(str);
                 }
-                // Else delete Client information from Tree View
+                // Else delete ClientOnServerSide information from Tree View
                 else{
                             foreach (TreeNode n in this.tvClientList.Nodes[0].Nodes)
                             {
@@ -218,7 +218,7 @@ namespace ChatNetwork
         }
 
         /// <summary>
-        /// Event called when Tree View Client list is double clicked. 
+        /// Event called when Tree View ClientOnServerSide list is double clicked. 
         /// When a node is double clicked, corresponding chat Dialog box is made visible.
         /// </summary>
         /// <param name="sender"></param>
@@ -233,10 +233,10 @@ namespace ChatNetwork
 
 
         public void DisconnectClient(String remoteIP, String remotePort) {
-            // Delete Client from Tree View
+            // Delete ClientOnServerSide from Tree View
             UpdateClientList(remoteIP + " : " + remotePort, "Delete");
 
-            // Find Client Chat Dialog box corresponding to this Socket
+            // Find ClientOnServerSide Chat Dialog box corresponding to this Socket
             int counter = 0;
             foreach (ChatDialog c in formArray)
             {

@@ -58,7 +58,7 @@
 			this.buttonClient.Name = "buttonClient";
 			this.buttonClient.Size = new System.Drawing.Size(140, 23);
 			this.buttonClient.TabIndex = 1;
-			this.buttonClient.Text = "&Client (send file to server)";
+			this.buttonClient.Text = "&ClientOnServerSide (send file to server)";
 			this.buttonClient.UseVisualStyleBackColor = true;
 			this.buttonClient.Click += new System.EventHandler(this.buttonClient_Click);
 			// 

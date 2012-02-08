@@ -99,9 +99,9 @@
 			// 
 			this.buttonSERVER_SendByte.Location = new System.Drawing.Point(84, 3);
 			this.buttonSERVER_SendByte.Name = "buttonSERVER_SendByte";
-			this.buttonSERVER_SendByte.Size = new System.Drawing.Size(75, 23);
+			this.buttonSERVER_SendByte.Size = new System.Drawing.Size(96, 23);
 			this.buttonSERVER_SendByte.TabIndex = 3;
-			this.buttonSERVER_SendByte.Text = "Send byte";
+			this.buttonSERVER_SendByte.Text = "Send message";
 			this.buttonSERVER_SendByte.UseVisualStyleBackColor = true;
 			this.buttonSERVER_SendByte.Click += new System.EventHandler(this.buttonSERVER_SendByte_Click);
 			// 
@@ -139,6 +139,7 @@
 			this.Controls.Add(this.splitContainer1);
 			this.Name = "PermanentNetworkConnection";
 			this.Text = "PermanentNetworkConnection";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PermanentNetworkConnection_FormClosing);
 			this.Load += new System.EventHandler(this.PermanentNetworkConnection_Load);
 			this.splitContainer1.Panel1.ResumeLayout(false);
 			this.splitContainer1.Panel1.PerformLayout();

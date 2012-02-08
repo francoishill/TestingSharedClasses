@@ -35,7 +35,7 @@ namespace ChatNetwork
         }
 
         /// <summary>
-        /// Constructor which accepts Client TCP object
+        /// Constructor which accepts ClientOnServerSide TCP object
         /// </summary>
         /// <param name="tcpClient"></param>
         public ChatDialog(Form1 parent,  TcpClient tcpClient)
@@ -55,7 +55,7 @@ namespace ChatNetwork
             connectedClient.Client.BeginReceive(state.buffer, 0, StateObject.BufferSize, 0,
                     new AsyncCallback(OnReceive), state);
 
-            //connectedClient.Client.BeginDisconnect(true, new AsyncCallback(DisconnectCallback), state);
+            //connectedClient.ClientOnServerSide.BeginDisconnect(true, new AsyncCallback(DisconnectCallback), state);
             rtbChat.AppendText("Chat Log Here------>");
         }
 
@@ -84,7 +84,7 @@ namespace ChatNetwork
 
         #region Send/Receive Data From Scokets
         /// <summary>
-        /// Function to Send Data to Client
+        /// Function to Send Data to ClientOnServerSide
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -192,11 +192,11 @@ namespace ChatNetwork
 
     #region StateObject Class Definition
     /// <summary>
-    /// StateObject Class to read data from Client
+    /// StateObject Class to read data from ClientOnServerSide
     /// </summary>
     public class StateObject
     {
-        // Client  socket.
+        // ClientOnServerSide  socket.
         public Socket workSocket = null;
         // Size of receive buffer.
         public const int BufferSize = 1024;

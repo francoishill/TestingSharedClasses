@@ -55,7 +55,7 @@
 			this.button_XmlRpcClient.Name = "button_XmlRpcClient";
 			this.button_XmlRpcClient.Size = new System.Drawing.Size(106, 23);
 			this.button_XmlRpcClient.TabIndex = 1;
-			this.button_XmlRpcClient.Text = "Xml Rpc Client";
+			this.button_XmlRpcClient.Text = "Xml Rpc ClientOnServerSide";
 			this.button_XmlRpcClient.UseVisualStyleBackColor = true;
 			this.button_XmlRpcClient.Click += new System.EventHandler(this.button_XmlRpcClient_Click);
 			// 
