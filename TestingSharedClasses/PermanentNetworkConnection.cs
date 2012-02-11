@@ -31,7 +31,7 @@ namespace TestingSharedClasses
 			//or rather (improved of the above)
 			//http://robjdavey.wordpress.com/2011/07/29/improved-asynchronous-tcp-client-example/
 
-			s = new Server();
+			/*s = new Server();
 			s.TextFeedbackEvent += (snder, evtargs) =>
 			{
 				AppendServerMessage(evtargs.FeedbackText);
@@ -44,7 +44,7 @@ namespace TestingSharedClasses
 			{
 				s.ctd.Send("Testing...");
 			};
-			timer.Start();
+			timer.Start();*/
 
 			////tmp();
 			//TcpClient client = new TcpClient();
@@ -294,14 +294,14 @@ namespace TestingSharedClasses
 		ClientOnClientSide C;
 		private void buttonStartClient_Click(object sender, EventArgs e)
 		{
-			//c = new Client(s, new TcpClient("localhost", 115));
+			/*//c = new Client(s, new TcpClient("localhost", 115));
 			C = new ClientOnClientSide();
 			C.TextFeedbackEvent += (snder, evtargs) =>
 			{
 				AppendClientMessage(evtargs.FeedbackText);
 			};
 			C.tmp();
-			return;
+			return;*/
 
 			//Open (firewall work) ports
 			//115 (SFTP)
@@ -313,7 +313,7 @@ namespace TestingSharedClasses
 				if (!NetworkInterop.ConnectToServer(
 					out clientSocket,
 					ipAddress: NetworkInterop.GetIPAddressFromString(comboBoxServerIP.Text),//"10.0.0.200"),
-					listeningPort: 115))
+					listeningPort: 25))
 				{
 					try
 					{
