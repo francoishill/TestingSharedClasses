@@ -152,7 +152,7 @@ namespace TestingSharedClasses
 		bool handshakeBusy = false;
 		private bool ServerToClientHandshake(out string errorMessage)
 		{
-			//TODO: Must not perform handshake if another transfer (like file or whatever) is bust, this would cause the bytes to get mixed up
+			//TODO: Must not perform handshake if another transfer (like file or whatever) is busy, this would cause the bytes to get mixed up
 			if (!handshakeBusy)
 			{
 				handshakeBusy = true;
@@ -226,7 +226,7 @@ namespace TestingSharedClasses
 					serverSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 					NetworkInterop.SetupServerSocketSettings(
 						ref serverSocket,
-						115,
+						25,//115,
 						1024,
 						100);
 
