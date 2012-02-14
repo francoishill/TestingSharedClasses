@@ -8,7 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Threading;
 using System.Net.Sockets;  
-using System.Net; 
+using System.Net;
 
 namespace ChatNetwork
 {
@@ -43,6 +43,7 @@ namespace ChatNetwork
             tvClientList.ImageList = il;
             node.ImageIndex = 1;
 
+			
         }
 
         #region Server Start/Stop

@@ -9,6 +9,7 @@ using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
 using InlineCommandToolkit;
+using Microsoft.Win32.TaskScheduler;
 using SharedClasses;
 using ICommandWithHandler = InlineCommandToolkit.InlineCommands.ICommandWithHandler;
 
@@ -81,6 +82,28 @@ namespace TestingSharedClasses
 			//MessageBox.Show(br.ReadString());
 			//MessageBox.Show(br.ReadDouble().ToString());
 			//MessageBox.Show(br.ReadDouble().ToString());
+
+			AddTaskToWindowsTaskScheduler();
+		}
+
+		private readonly string taskPath = "TestFrancois123";
+		public void AddTaskToWindowsTaskScheduler()
+		{
+			TaskService ts = new TaskService();
+
+			Task tmpTask = ts.GetTask(taskPath);
+			if (tmpTask == null)
+			{
+				TaskDefinition td = ts.NewTask();
+				td.RegistrationInfo.Description = "Testing a custom task";
+				td.Triggers.Add(new DailyTrigger() { StartBoundary = DateTime.Now + TimeSpan.FromSeconds(30) });
+				td.Actions.Add(new ShowMessageAction("Body from C#", "Title from C#"));
+				td.Actions.Add(new ExecAction("cmd.exe", null, null));
+				ts.RootFolder.RegisterTaskDefinition(taskPath, td);
+
+				tmpTask = ts.GetTask(taskPath);
+				tmpTask.ToString();
+			}
 		}
 
 		private void buttonSerializationInterop_Click(object sender, EventArgs e)
