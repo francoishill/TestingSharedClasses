@@ -26,6 +26,9 @@ namespace TestingSharedClasses
 		Server s;
 		private void PermanentNetworkConnection_Load(object sender, EventArgs e)
 		{
+			RemoteXmlRpc remoteXmlRpc = new RemoteXmlRpc();
+			remoteXmlRpc.Show();
+
 			//if (XmlRpcInterop.StartDynamicCodeInvokingServer_XmlRpc())
 			//	AppendServerMessage("XmlRpc server started.");
 			//else
