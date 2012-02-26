@@ -26,10 +26,10 @@ namespace TestingSharedClasses
 		Server s;
 		private void PermanentNetworkConnection_Load(object sender, EventArgs e)
 		{
-			if (XmlRpcInterop.StartDynamicCodeInvokingServer_XmlRpc())
-				AppendServerMessage("XmlRpc server started.");
-			else
-				AppendServerMessage("Unable to start XmpRpc server.");
+			//if (XmlRpcInterop.StartDynamicCodeInvokingServer_XmlRpc())
+			//	AppendServerMessage("XmlRpc server started.");
+			//else
+			//	AppendServerMessage("Unable to start XmpRpc server.");
 
 			//Check out the following links for async TcpClient:
 			//http://robjdavey.wordpress.com/2011/02/11/asynchronous-tcp-client-example/
