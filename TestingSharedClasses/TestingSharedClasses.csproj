@@ -109,8 +109,9 @@
       <Link>DynamicCodeInvokingUserControl.cs</Link>
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="..\..\SharedClasses\DynamicCodeInvokingUserControl.Designer.cs">
-      <Link>DynamicCodeInvokingUserControl.Designer.cs</Link>
+    <Compile Include="..\..\SharedClasses\DynamicCodeInvokingUserControl.designer.cs">
+      <Link>DynamicCodeInvokingUserControl.designer.cs</Link>
+      <DependentUpon>DynamicCodeInvokingUserControl.cs</DependentUpon>
     </Compile>
     <Compile Include="..\..\SharedClasses\InlineCommandsUserControl.cs">
       <Link>InlineCommandsUserControl.cs</Link>
@@ -193,6 +194,7 @@
     <Compile Include="tmp.cs" />
     <EmbeddedResource Include="..\..\SharedClasses\DynamicCodeInvokingUserControl.resx">
       <Link>DynamicCodeInvokingUserControl.resx</Link>
+      <DependentUpon>DynamicCodeInvokingUserControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="..\..\SharedClasses\InlineCommandsUserControl.resx">
       <Link>InlineCommandsUserControl.resx</Link>

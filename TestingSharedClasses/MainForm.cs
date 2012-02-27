@@ -9,7 +9,7 @@ using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
 using InlineCommandToolkit;
-using Microsoft.Win32.TaskScheduler;
+//using Microsoft.Win32.TaskScheduler;
 using SharedClasses;
 using ICommandWithHandler = InlineCommandToolkit.InlineCommands.ICommandWithHandler;
 
@@ -83,10 +83,10 @@ namespace TestingSharedClasses
 			//MessageBox.Show(br.ReadDouble().ToString());
 			//MessageBox.Show(br.ReadDouble().ToString());
 
-			AddTaskToWindowsTaskScheduler();
+			//AddTaskToWindowsTaskScheduler();
 		}
 
-		private readonly string taskPath = "TestFrancois123";
+		/*private readonly string taskPath = "TestFrancois123";
 		public void AddTaskToWindowsTaskScheduler()
 		{
 			TaskService ts = new TaskService();
@@ -104,7 +104,7 @@ namespace TestingSharedClasses
 				tmpTask = ts.GetTask(taskPath);
 				tmpTask.ToString();
 			}
-		}
+		}*/
 
 		private void buttonSerializationInterop_Click(object sender, EventArgs e)
 		{
