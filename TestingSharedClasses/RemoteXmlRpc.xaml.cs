@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -15,6 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Xml;
 using Microsoft.Win32;
+using SharedClasses;
 
 namespace TestingSharedClasses
 {
@@ -202,22 +204,24 @@ namespace TestingSharedClasses
 				}
 		}
 
-		private void ButtonImportAll_Click(object sender, RoutedEventArgs e)
+		private void ImportFromFile(string filepath = null)
 		{
 			OpenFileDialog ofd = new OpenFileDialog();
 			ofd.Title = "Select a file to load from";
 			ofd.Filter = "Xml files (*.xml)|*.xml";
-			if (ofd.ShowDialog().Value)
+			if (filepath != null || ofd.ShowDialog().Value)
 			{
+				if (filepath != null)
+					ofd.FileName = filepath;
 				if (listBoxMethodList.Items.Count == 0 || UserMessages.Confirm("The operation list is currently not empty and will be cleared when importing file, continue?"))
 				{
 					PopulateTypeList();
 
 					listBoxMethodList.ItemsSource = null;
 					var tmpMethodToRunList = new ObservableCollection<MethodToRun>();
-					
+
 					string tmpUsedClass_AssemblyQualifiedName = null;
-					string tmpMethodName = null;					
+					string tmpMethodName = null;
 
 					XmlDocument xmlDoc = new XmlDocument();
 					xmlDoc.Load(ofd.FileName);
@@ -274,13 +278,15 @@ namespace TestingSharedClasses
 			}
 		}
 
-		private void ButtonExportAll_Click(object sender, RoutedEventArgs e)
+		private void ExportToFile(string filepath = null)
 		{
 			SaveFileDialog sfd = new SaveFileDialog();
 			sfd.Title = "Select a file to save to";
 			sfd.Filter = "Xml files (*.xml)|*.xml";
-			if (sfd.ShowDialog().Value)
+			if (filepath != null || sfd.ShowDialog().Value)
 			{
+				if (filepath != null)
+					sfd.FileName = filepath;
 				using (var xw = new XmlTextWriter(sfd.FileName, System.Text.Encoding.ASCII) { Formatting = Formatting.Indented })
 				{
 					xw.WriteStartElement("ListOfMethodToRun");
@@ -305,6 +311,63 @@ namespace TestingSharedClasses
 					xw.WriteEndElement();//ListOfMethodToRun
 				}
 			}
+		}
+
+		const string appname = "RemoteXmlRpc";
+		const string listsSubfolder = "SavedListsOfMethodsToRun";
+		private void MenuitemLoadList_Click(object sender, RoutedEventArgs e)
+		{
+			string tmpdir = SettingsInterop.LocalAppdataPath(appname) + "\\" + listsSubfolder;
+			string[] tmpNamelist = Directory.GetFiles(tmpdir).Select(f => System.IO.Path.GetFileNameWithoutExtension(f)).ToArray();
+			if (tmpNamelist == null || tmpNamelist.Length == 0)
+			{
+				if (UserMessages.Confirm("There are no lists saved yet, import from custom file rather?"))
+					ImportFromFile();
+			}
+			else
+			{
+				//string NameToUse = InputBoxWPF.Prompt("Please enter the desired name of this list to load", "List name to load");
+				//string NameToUse = PickItemForm.PickItem<string>(tmpNamelist, "Please choose the list to load", null);
+				string NameToUse = PickItemWPF.PickItem(typeof(string), tmpNamelist, "Please choose the list to load", null) as string;
+				if (NameToUse != null)
+				{
+					if (string.IsNullOrWhiteSpace(NameToUse))
+						UserMessages.ShowWarningMessage("Cannot use a blank string for a name");
+					else
+						ImportFromFile(SettingsInterop.GetFullFilePathInLocalAppdata(NameToUse + ".mtrl", appname, listsSubfolder));
+				}
+			}
+		}
+
+		private void MenuitemSaveList_Click(object sender, RoutedEventArgs e)
+		{
+			string NameToUse = InputBoxWPF.Prompt("Please enter the desired name of this list to save to", "Name the list");
+			if (NameToUse != null)
+			{
+				if (string.IsNullOrWhiteSpace(NameToUse))
+					UserMessages.ShowWarningMessage("Cannot use a blank string for a name");
+				else
+				{
+					string tmpfilepath = SettingsInterop.GetFullFilePathInLocalAppdata(NameToUse + ".mtrl", "RemoteXmlRpc", "SavedListsOfMethodsToRun");
+					if (!File.Exists(tmpfilepath) || UserMessages.Confirm("The list name already exists, overwrite it?"))
+						ExportToFile(tmpfilepath);
+				}
+			}
+		}
+
+		private void MenuitemImportFromFile_Click(object sender, RoutedEventArgs e)
+		{
+			ImportFromFile();
+		}
+
+		private void MenuitemExportToFile_Click(object sender, RoutedEventArgs e)
+		{
+			ExportToFile();
+		}
+
+		private void MenuitemExit_Click(object sender, RoutedEventArgs e)
+		{
+			Application.Current.Shutdown(0);
 		}
 	}
 
