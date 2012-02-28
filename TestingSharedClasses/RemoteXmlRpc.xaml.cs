@@ -4,16 +4,9 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using System.Xml;
 using Microsoft.Win32;
 using SharedClasses;
@@ -25,6 +18,10 @@ namespace TestingSharedClasses
 	/// </summary>
 	public partial class RemoteXmlRpc : Window
 	{
+		//New stuff
+		ObservableCollection<ClassWithStaticMethods> classes = new ObservableCollection<ClassWithStaticMethods>();
+
+		//Old stuff
 		List<string> alltypeslist = null;
 		ObservableCollection<string> filteredTypesList = null;
 
@@ -36,6 +33,11 @@ namespace TestingSharedClasses
 		private void Window_Loaded(object sender, RoutedEventArgs e)
 		{
 			System.Windows.Forms.Integration.ElementHost.EnableModelessKeyboardInterop(this);
+
+			//New stuff
+			classes.Add(new ClassWithStaticMethods(typeof(System.Windows.Forms.MessageBox)));
+			classes.Add(new ClassWithStaticMethods(typeof(System.Math)));
+			treeViewClasses.ItemsSource = classes;
 		}
 
 		private void Button_GetListClick(object sender, RoutedEventArgs e)
@@ -368,6 +370,61 @@ namespace TestingSharedClasses
 		private void MenuitemExit_Click(object sender, RoutedEventArgs e)
 		{
 			Application.Current.Shutdown(0);
+		}
+
+		private void MethodBorder_PreviewMouseRightButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+		{
+			Border borderRightClicked = sender as Border;
+			if (borderRightClicked == null)
+				return;
+
+			ClassWithStaticMethods.MethodClass methodClass = borderRightClicked.DataContext as ClassWithStaticMethods.MethodClass;
+			if (methodClass == null)
+				return;
+			//System.Windows.Forms.MessageBox.Show(methodClass.ParentClass.GetType().ToString());
+			Continue here
+			DynamicCodeInvoking.RunSelectedFunction(
+				methodClass.PropertyGridAdapter._dictionary,
+				methodClass.ParentClass.ClassType.AssemblyQualifiedName,
+				methodClass.Methodinfo.Name);
+		}
+	}
+
+	public class ClassWithStaticMethods
+	{
+		private MethodClass[] _methods;		
+
+		public Type ClassType { get; private set; }
+		public MethodClass[] Methods { get { return _methods ?? (_methods = ClassType.GetMethods().Where(mi => mi.IsStatic).Select<MethodInfo, MethodClass>(mi => new MethodClass(mi, this)).ToArray()); } }
+		//public MethodInfo SelectedMethod { get; private set; }
+
+		public ClassWithStaticMethods(Type ClassType)
+		{
+			this.ClassType = ClassType;
+		}
+
+		public class MethodClass
+		{
+			private ParameterInfo[] _parameters;
+
+			public ClassWithStaticMethods ParentClass { get; private set; }
+			public MethodInfo Methodinfo { get; private set; }
+			public ParameterInfo[] Parameters { get { return _parameters ?? (_parameters = Methodinfo.GetParameters()); } }
+			public DictionaryPropertyGridAdapter PropertyGridAdapter { get; private set; }
+			public MethodClass(MethodInfo Methodinfo, ClassWithStaticMethods ParentClass)
+			{
+				this.ParentClass = ParentClass;
+				this.Methodinfo = Methodinfo;
+				Dictionary<string, ParameterNameAndType> tmpdict = new Dictionary<string, ParameterNameAndType>();
+				foreach (ParameterInfo pi in Parameters)
+					tmpdict.Add(pi.Name, new ParameterNameAndType(pi.Name, pi.ParameterType));
+				PropertyGridAdapter = new DictionaryPropertyGridAdapter(tmpdict);					
+			}
+
+			public override string ToString()
+			{
+				return Methodinfo.ToString();
+			}
 		}
 	}
 
