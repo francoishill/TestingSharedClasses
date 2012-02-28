@@ -13,6 +13,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Xml;
+using Microsoft.Win32;
 
 namespace TestingSharedClasses
 {
@@ -36,10 +38,17 @@ namespace TestingSharedClasses
 
 		private void Button_GetListClick(object sender, RoutedEventArgs e)
 		{
+			PopulateTypeList();
+			textBox1.Focus();
+		}
+
+		private void PopulateTypeList()
+		{
+			if (alltypeslist != null)
+				return;
 			alltypeslist = DynamicCodeInvoking.GetAllUniqueSimpleTypeStringsInCurrentAssembly;
 			filteredTypesList = new ObservableCollection<string>(alltypeslist);
 			listBox1.ItemsSource = filteredTypesList;
-			textBox1.Focus();
 		}
 
 		private void textBox1_TextChanged(object sender, TextChangedEventArgs e)
@@ -61,6 +70,7 @@ namespace TestingSharedClasses
 			return DynamicCodeInvoking.GetTypeFromSimpleString(listBox1.SelectedItem.ToString());
 		}
 
+		private bool IslistBox1SelectionChangeInvokedBylistBoxMethodList = false;
 		private void listBox1_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
 			if (listBox1.SelectedIndex == -1)
@@ -69,7 +79,8 @@ namespace TestingSharedClasses
 				return;
 			}
 
-			listBoxMethodList.SelectedItem = null;
+			if (!IslistBox1SelectionChangeInvokedBylistBoxMethodList)
+				listBoxMethodList.SelectedItem = null;
 
 			Type selectedType = GetSelectedTypeFromListbox();//Assembly.GetExecutingAssembly().GetType(selectedString);
 			//var methods = selectedType.GetMethods().Where(m => m.IsStatic);
@@ -121,7 +132,10 @@ namespace TestingSharedClasses
 		private void ButtonPerformSelected_Click(object sender, RoutedEventArgs e)
 		{
 			if (listBoxMethodList.SelectedIndex == -1)
+			{
+				UserMessages.ShowWarningMessage("Please select an item first");
 				return;
+			}
 			MethodToRun mtr = listBoxMethodList.SelectedItem as MethodToRun;
 			if (mtr == null)
 				return;
@@ -130,12 +144,8 @@ namespace TestingSharedClasses
 
 		private void ButtonPerformAll_Click(object sender, RoutedEventArgs e)
 		{
-			UserMessages.ShowInfoMessage("Function not incorporated yet");
-			//if (listBoxMethodList.SelectedIndex == -1)
-			//	return;
-			//MethodToRun mtr = listBoxMethodList.SelectedItem as MethodToRun;
-			//if (mtr == null)
-			//	return;
+			foreach (MethodToRun mtr in listBoxMethodList.Items)
+				DynamicCodeInvoking.RunSelectedFunction(mtr.Parameters, mtr.UsedClass_AssemblyQualifiedName, mtr.MethodName);
 		}
 
 		private void listBoxMethodList_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -145,22 +155,164 @@ namespace TestingSharedClasses
 				return;
 
 			textBox1.Text = "";
-			//DynamicCodeInvoking.GetTypeFromSimpleString(mtr.
 			string strLookingFor = mtr.UsedClass_AssemblyQualifiedName.Substring(0, mtr.UsedClass_AssemblyQualifiedName.IndexOf(','));
 			for (int i = 0; i < listBox1.Items.Count; i++)
 				if (listBox1.Items[i].ToString().Equals(strLookingFor))
 				{
+					IslistBox1SelectionChangeInvokedBylistBoxMethodList = true;
 					listBox1.SelectedItem = listBox1.Items[i];
 					listBox1.ScrollIntoView(listBox1.SelectedItem);
+					IslistBox1SelectionChangeInvokedBylistBoxMethodList = false;
+
+					Type typeLookingFor = DynamicCodeInvoking.GetTypeFromSimpleString(strLookingFor);
+					if (typeLookingFor != null)
+					{
+						foreach (MethodInfo mi in typeLookingFor.GetMethods())
+							if (mi.Name.Equals(mtr.MethodName, StringComparison.InvariantCultureIgnoreCase))
+							{
+								ParameterInfo[] parameters = mi.GetParameters();
+								if (parameters.Length != mtr.Parameters.Count)
+									continue;
+								bool MismatchFound = false;
+								var keys = mtr.Parameters.Keys.ToArray();
+								for (int j = 0; j < parameters.Length; j++)
+									if (parameters[j].ParameterType != mtr.Parameters[keys[j]].type)
+										MismatchFound = true;
+								if (!MismatchFound)
+								{
+									listBox2.SelectedItem = mi;
+									listBox2.UpdateLayout();
+									propertyGrid1.Update();
+									propertyGrid1.UpdateLayout();
+									DictionaryPropertyGridAdapter adap = propertyGrid1.SelectedObject as DictionaryPropertyGridAdapter;
+									if (adap == null)
+										UserMessages.ShowWarningMessage("Unable to get selected adapter for property grid.");
+									else
+									{
+										adap._dictionary.Clear();
+										adap._dictionary = null;
+										adap._dictionary = mtr.Parameters;
+										propertyGrid1.SelectedObject = null;
+										adap.GetProperties(new Attribute[0]);
+										propertyGrid1.SelectedObject = adap;
+									}
+								}
+							}
+					}
 				}
+		}
+
+		private void ButtonImportAll_Click(object sender, RoutedEventArgs e)
+		{
+			OpenFileDialog ofd = new OpenFileDialog();
+			ofd.Title = "Select a file to load from";
+			ofd.Filter = "Xml files (*.xml)|*.xml";
+			if (ofd.ShowDialog().Value)
+			{
+				if (listBoxMethodList.Items.Count == 0 || UserMessages.Confirm("The operation list is currently not empty and will be cleared when importing file, continue?"))
+				{
+					PopulateTypeList();
+
+					listBoxMethodList.ItemsSource = null;
+					var tmpMethodToRunList = new ObservableCollection<MethodToRun>();
+					
+					string tmpUsedClass_AssemblyQualifiedName = null;
+					string tmpMethodName = null;					
+
+					XmlDocument xmlDoc = new XmlDocument();
+					xmlDoc.Load(ofd.FileName);
+					XmlNodeList methodsToRun = xmlDoc.SelectNodes("ListOfMethodToRun/MethodToRun");
+					foreach (XmlNode methodNode in methodsToRun)
+					{
+						tmpUsedClass_AssemblyQualifiedName = methodNode.Attributes["UsedClass_AssemblyQualifiedName"].Value;
+						tmpMethodName = methodNode.Attributes["MethodName"].Value;
+						if (string.IsNullOrWhiteSpace(tmpUsedClass_AssemblyQualifiedName))
+							UserMessages.ShowWarningMessage("Cannot read MethodToRun attribute 'UsedClass_AssemblyQualifiedName': " + methodNode.OuterXml);
+						else if (string.IsNullOrWhiteSpace(tmpMethodName))
+							UserMessages.ShowWarningMessage("Cannot read MethodToRun attribute 'MethodName': " + methodNode.OuterXml);
+						else
+						{
+							Dictionary<string, ParameterNameAndType> tmpParams = new Dictionary<string, ParameterNameAndType>();
+
+							bool errorOccurred = false;
+							XmlNodeList parameters = methodNode.SelectNodes("Parameters/Parameter");
+							foreach (XmlNode paramNode in parameters)
+							{
+								string tmpParamName = paramNode.Attributes["Name"].Value;
+								string tmpParamAssemblyQualifiedName = paramNode.Attributes["AssemblyQualifiedName"].Value;
+								object tmpParamValue = paramNode.InnerText;
+								if (string.IsNullOrWhiteSpace(tmpParamName))
+									UserMessages.ShowWarningMessage("Cannot read Parameter attribute 'Name': " + paramNode.OuterXml);
+								else if (string.IsNullOrWhiteSpace(tmpParamAssemblyQualifiedName))
+									UserMessages.ShowWarningMessage("Cannot read Parameter attribute 'AssemblyQualifiedName': " + paramNode.OuterXml);
+								else if (tmpParamValue == null)//It might? be empty...?
+									UserMessages.ShowWarningMessage("Cannot read Parameter value: " + paramNode.OuterXml);
+								else//Successful
+								{
+									var tmpparamtype = DynamicCodeInvoking.GetTypeFromSimpleString(tmpParamAssemblyQualifiedName.Substring(0, tmpParamAssemblyQualifiedName.IndexOf(',')));
+									var tmpParam = new ParameterNameAndType(tmpParamName, tmpparamtype);
+									tmpParamValue = Convert.ChangeType(tmpParamValue, tmpparamtype);
+									tmpParam.OverrideValue(tmpParamValue);
+									tmpParams.Add(tmpParamName, tmpParam);
+									continue;
+								}
+								errorOccurred = true;//This will be skipped be the above "continue" if successful
+							}
+
+							if (!errorOccurred)
+							{
+								tmpMethodToRunList.Add(new MethodToRun(
+									tmpParams,
+									tmpUsedClass_AssemblyQualifiedName,
+									tmpMethodName));
+							}
+						}
+					}
+
+					listBoxMethodList.ItemsSource = tmpMethodToRunList;
+				}
+			}
+		}
+
+		private void ButtonExportAll_Click(object sender, RoutedEventArgs e)
+		{
+			SaveFileDialog sfd = new SaveFileDialog();
+			sfd.Title = "Select a file to save to";
+			sfd.Filter = "Xml files (*.xml)|*.xml";
+			if (sfd.ShowDialog().Value)
+			{
+				using (var xw = new XmlTextWriter(sfd.FileName, System.Text.Encoding.ASCII) { Formatting = Formatting.Indented })
+				{
+					xw.WriteStartElement("ListOfMethodToRun");
+					foreach (MethodToRun mtr in listBoxMethodList.Items)
+					{
+						xw.WriteStartElement("MethodToRun");
+						xw.WriteAttributeString("UsedClass_AssemblyQualifiedName", mtr.UsedClass_AssemblyQualifiedName);
+						xw.WriteAttributeString("MethodName", mtr.MethodName);
+						xw.WriteStartElement("Parameters");
+						var keys = mtr.Parameters.Keys.ToArray();
+						foreach (string key in keys)
+						{
+							xw.WriteStartElement("Parameter");
+							xw.WriteAttributeString("Name", mtr.Parameters[key].Name);
+							xw.WriteAttributeString("AssemblyQualifiedName", mtr.Parameters[key].type.AssemblyQualifiedName);
+							xw.WriteValue(mtr.Parameters[key].Value);
+							xw.WriteEndElement();
+						}
+						xw.WriteEndElement();//Parameters
+						xw.WriteEndElement();//MethodToRun
+					}
+					xw.WriteEndElement();//ListOfMethodToRun
+				}
+			}
 		}
 	}
 
 	public class MethodToRun
 	{
 		public Dictionary<string, ParameterNameAndType> Parameters { get; set; }
-		public string UsedClass_AssemblyQualifiedName{ get; set; }
-		public string MethodName{ get; set; }
+		public string UsedClass_AssemblyQualifiedName { get; set; }
+		public string MethodName { get; set; }
 		public MethodToRun(Dictionary<string, ParameterNameAndType> Parameters, string UsedClass_AssemblyQualifiedName, string MethodName)
 		{
 			this.Parameters = Parameters;
@@ -168,7 +320,7 @@ namespace TestingSharedClasses
 			this.MethodName = MethodName;
 		}
 
-		public string HumanName
+		public string UsedClass_HumanName
 		{
 			get
 			{

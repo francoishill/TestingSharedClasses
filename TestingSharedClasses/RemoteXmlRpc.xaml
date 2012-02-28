@@ -19,14 +19,24 @@
 			<ColumnDefinition />
 			<ColumnDefinition />
 		</Grid.ColumnDefinitions>
+		<Button Content='Import all'
+						Margin='3,3,0,0'
+						VerticalAlignment='Top'
+						HorizontalAlignment='Left'
+						Click='ButtonImportAll_Click' />
+		<Button Content='Export all'
+						Margin='0,3,8,0'
+						VerticalAlignment='Top'
+						HorizontalAlignment='Right'
+						Click='ButtonExportAll_Click' />
 		<ListBox Name='listBoxMethodList'
-						 Margin='0,0,5,30'
+						 Margin='0,30,5,30'
 						 SelectionChanged="listBoxMethodList_SelectionChanged">
 			<ListBox.ItemTemplate>
 				<DataTemplate>
 					<Border>
 						<StackPanel Orientation='Horizontal'>
-							<TextBlock Text='{Binding HumanName}' />
+							<TextBlock Text='{Binding UsedClass_HumanName}' />
 						</StackPanel>
 					</Border>
 				</DataTemplate>
