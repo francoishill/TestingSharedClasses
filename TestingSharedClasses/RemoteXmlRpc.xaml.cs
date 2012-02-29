@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Input;
 using System.Xml;
 using Microsoft.Win32;
 using SharedClasses;
@@ -381,21 +383,66 @@ namespace TestingSharedClasses
 			ClassWithStaticMethods.MethodClass methodClass = borderRightClicked.DataContext as ClassWithStaticMethods.MethodClass;
 			if (methodClass == null)
 				return;
+
+			borderRightClicked.ContextMenu.DataContext = methodClass;
+			borderRightClicked.ContextMenu.IsOpen = true;
+
 			//System.Windows.Forms.MessageBox.Show(methodClass.ParentClass.GetType().ToString());
-			Continue here
-			DynamicCodeInvoking.RunSelectedFunction(
-				methodClass.PropertyGridAdapter._dictionary,
-				methodClass.ParentClass.ClassType.AssemblyQualifiedName,
-				methodClass.Methodinfo.Name);
+			//Continue here
+
+
+
+			//DynamicCodeInvoking.RunSelectedFunction(
+			//	methodClass.PropertyGridAdapter._dictionary,
+			//	methodClass.ParentClass.ClassType.AssemblyQualifiedName,
+			//	methodClass.Methodinfo.Name);
+		}
+
+		private void ListBoxMethods_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			(sender as ListBox).SelectedItem = null;
+		}
+
+		private void MenuItemRunRemotely_Click(object sender, RoutedEventArgs e)
+		{
+			ClassWithStaticMethods.MethodClass methodClass = (sender as MenuItem).DataContext as ClassWithStaticMethods.MethodClass;
+			DynamicCodeInvoking.RunCodeReturnStruct result = methodClass.Run();
+		}
+
+		private void MethodBorder_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+		{
+			//if (e.Key == System.Windows.Input.Key.Down
+			//	&& Keyboard.Modifiers == ModifierKeys.Control)
+			//{
+			//	Border borderRightClicked = sender as Border;
+			//	if (borderRightClicked == null)
+			//		return;
+
+			//	ClassWithStaticMethods.MethodClass methodClass = borderRightClicked.DataContext as ClassWithStaticMethods.MethodClass;
+			//	if (methodClass == null)
+			//		return;
+
+			//	var enumerator = methodClass.ParentClass.Methods.GetEnumerator();
+			//	while (enumerator.Current != methodClass && enumerator.MoveNext())
+			//	{ }
+			//	if (enumerator.Current == methodClass)
+			//		if (enumerator.MoveNext())
+			//		//Continue here
+			//		{ }
+
+
+			//	borderRightClicked.ContextMenu.DataContext = methodClass;
+			//	borderRightClicked.ContextMenu.IsOpen = true;
+			//}
 		}
 	}
 
 	public class ClassWithStaticMethods
 	{
-		private MethodClass[] _methods;		
+		private MethodClass[] _methods;
 
 		public Type ClassType { get; private set; }
-		public MethodClass[] Methods { get { return _methods ?? (_methods = ClassType.GetMethods().Where(mi => mi.IsStatic).Select<MethodInfo, MethodClass>(mi => new MethodClass(mi, this)).ToArray()); } }
+		public MethodClass[] Methods { get { return _methods ?? (_methods = ClassType.GetMethods().Where(mi => mi.IsStatic).OrderBy(mi => mi.Name).Select<MethodInfo, MethodClass>(mi => new MethodClass(mi, this)).ToArray()); } }
 		//public MethodInfo SelectedMethod { get; private set; }
 
 		public ClassWithStaticMethods(Type ClassType)
@@ -403,7 +450,7 @@ namespace TestingSharedClasses
 			this.ClassType = ClassType;
 		}
 
-		public class MethodClass
+		public class MethodClass : INotifyPropertyChanged
 		{
 			private ParameterInfo[] _parameters;
 
@@ -411,6 +458,26 @@ namespace TestingSharedClasses
 			public MethodInfo Methodinfo { get; private set; }
 			public ParameterInfo[] Parameters { get { return _parameters ?? (_parameters = Methodinfo.GetParameters()); } }
 			public DictionaryPropertyGridAdapter PropertyGridAdapter { get; private set; }
+
+			public bool LastSuccess { get; private set; }
+			public string LastFailureErrorMessage { get; private set; }
+			public string LastResultTypeString { get; private set; }
+			public object LastResultObject { get; private set; }
+			public DateTime LastResultTime { get; private set; }
+			private DynamicCodeInvoking.RunCodeReturnStruct _lastresult;
+			public DynamicCodeInvoking.RunCodeReturnStruct LastResult
+			{
+				get { return _lastresult; }
+				private set
+				{
+					_lastresult = value; OnPropertyChanged("LastResult");
+					LastResultTypeString = value.ResultingTypeString; OnPropertyChanged("LastResultTypeString");
+					LastResultObject = value.MethodInvokeResultingObject; OnPropertyChanged("LastResultObject");
+					LastResultTime = DateTime.Now; OnPropertyChanged("LastResultTime");
+					LastSuccess = value.Success; OnPropertyChanged("LastSuccess");
+					LastFailureErrorMessage = value.ErrorMessage; OnPropertyChanged("LastFailureErrorMessage");
+				}
+			}
 			public MethodClass(MethodInfo Methodinfo, ClassWithStaticMethods ParentClass)
 			{
 				this.ParentClass = ParentClass;
@@ -418,13 +485,26 @@ namespace TestingSharedClasses
 				Dictionary<string, ParameterNameAndType> tmpdict = new Dictionary<string, ParameterNameAndType>();
 				foreach (ParameterInfo pi in Parameters)
 					tmpdict.Add(pi.Name, new ParameterNameAndType(pi.Name, pi.ParameterType));
-				PropertyGridAdapter = new DictionaryPropertyGridAdapter(tmpdict);					
+				PropertyGridAdapter = new DictionaryPropertyGridAdapter(tmpdict);
+			}
+			public DynamicCodeInvoking.RunCodeReturnStruct Run()
+			{
+				LastResult =
+					DynamicCodeInvoking.RunSelectedFunction(
+					this.PropertyGridAdapter._dictionary,
+					this.ParentClass.ClassType.AssemblyQualifiedName,
+					this.Methodinfo.Name,
+					false);
+				return LastResult;
 			}
 
 			public override string ToString()
 			{
 				return Methodinfo.ToString();
 			}
+
+			public event PropertyChangedEventHandler PropertyChanged = new PropertyChangedEventHandler(delegate { });
+			public void OnPropertyChanged(string propertyName) { PropertyChanged(this, new PropertyChangedEventArgs(propertyName)); }
 		}
 	}
 
@@ -456,6 +536,19 @@ namespace TestingSharedClasses
 	}
 
 	#region Converters
+	public class BooleanToVisibilityConverter : IValueConverter
+	{
+		public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+		{
+			return !(value is bool) || ((bool)value) == false ? Visibility.Collapsed : Visibility.Visible;
+		}
+
+		public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+		{
+			throw new NotImplementedException();
+		}
+	}
+
 	public class MethodInfoToParameterListConverter : IValueConverter
 	{
 		public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
