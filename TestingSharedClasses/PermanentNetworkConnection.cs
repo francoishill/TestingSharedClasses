@@ -23,7 +23,7 @@ namespace TestingSharedClasses
 			this.Disposed += new EventHandler(PermanentNetworkConnection_Disposed);
 		}
 
-		Server s;
+		Server s = null;
 		private void PermanentNetworkConnection_Load(object sender, EventArgs e)
 		{
 			RemoteXmlRpc remoteXmlRpc = new RemoteXmlRpc();
@@ -299,7 +299,7 @@ namespace TestingSharedClasses
 		}
 
 		//Client c;
-		ClientOnClientSide C;
+		//ClientOnClientSide C;
 		private void buttonStartClient_Click(object sender, EventArgs e)
 		{
 			/*//c = new Client(s, new TcpClient("localhost", 115));
@@ -500,11 +500,11 @@ namespace TestingSharedClasses
 			//s.ctd.Send(prompt);
 
 			return;
-			if (currentServerHandler == null)
-			{
-				UserMessages.ShowWarningMessage("Cannot send data with no client connection");
-				return;
-			}
+			//if (currentServerHandler == null)
+			//{
+			//	UserMessages.ShowWarningMessage("Cannot send data with no client connection");
+			//	return;
+			//}
 
 			//NetworkStream ns = new NetworkStream(currentServerHandler);
 			//ns.WriteByte(7);

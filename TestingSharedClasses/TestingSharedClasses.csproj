@@ -113,18 +113,15 @@
       <Link>DynamicCodeInvokingUserControl.designer.cs</Link>
       <DependentUpon>DynamicCodeInvokingUserControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="..\..\SharedClasses\InlineCommandsUserControl.cs">
-      <Link>InlineCommandsUserControl.cs</Link>
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="..\..\SharedClasses\InlineCommandsUserControl.Designer.cs">
-      <Link>InlineCommandsUserControl.Designer.cs</Link>
-    </Compile>
     <Compile Include="..\..\SharedClasses\MicrosoftOfficeInterop.cs">
       <Link>MicrosoftOfficeInterop.cs</Link>
     </Compile>
     <Compile Include="..\..\SharedClasses\PhpInterop.cs">
       <Link>PhpInterop.cs</Link>
+    </Compile>
+    <Compile Include="..\..\SharedClasses\RemoteXmlRpc.xaml.cs">
+      <Link>RemoteXmlRpc.xaml.cs</Link>
+      <DependentUpon>RemoteXmlRpc.xaml</DependentUpon>
     </Compile>
     <Compile Include="..\..\SharedClasses\StartupbatInterop.cs">
       <Link>StartupbatInterop.cs</Link>
@@ -192,9 +189,6 @@
     <EmbeddedResource Include="..\..\SharedClasses\DynamicCodeInvokingUserControl.resx">
       <Link>DynamicCodeInvokingUserControl.resx</Link>
       <DependentUpon>DynamicCodeInvokingUserControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="..\..\SharedClasses\InlineCommandsUserControl.resx">
-      <Link>InlineCommandsUserControl.resx</Link>
     </EmbeddedResource>
     <EmbeddedResource Include="AutoCompleteInteropForm.resx">
       <DependentUpon>AutoCompleteInteropForm.cs</DependentUpon>
@@ -289,6 +283,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="..\..\SharedClasses\RemoteXmlRpc.xaml">
+      <Link>RemoteXmlRpc.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

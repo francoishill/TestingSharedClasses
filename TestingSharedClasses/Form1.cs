@@ -135,7 +135,8 @@ namespace ChatNetwork
                     
                     StartServer();
                 }
-                catch(Exception ex){ 
+                catch(Exception)//ex)
+				{ 
                     MessageBox.Show("Please enter the correct port number!!!");
                     ckbServerControl.Checked = false;  
                 }

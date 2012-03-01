@@ -40,7 +40,7 @@
 			this.treeView1 = new System.Windows.Forms.TreeView();
 			this.textBox2 = new System.Windows.Forms.TextBox();
 			this.button1 = new System.Windows.Forms.Button();
-			this.inlineCommandsUserControl1 = new SharedClasses.InlineCommandsUserControl();
+			//this.inlineCommandsUserControl1 = new SharedClasses.InlineCommandsUserControl();
 			this.buttonTestPermanentNetworkConnection = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
@@ -160,7 +160,7 @@
 			// 
 			// inlineCommandsUserControl1
 			// 
-			this.inlineCommandsUserControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+			/*this.inlineCommandsUserControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.inlineCommandsUserControl1.Enabled = false;
@@ -168,7 +168,7 @@
 			this.inlineCommandsUserControl1.Name = "inlineCommandsUserControl1";
 			this.inlineCommandsUserControl1.Padding = new System.Windows.Forms.Padding(2);
 			this.inlineCommandsUserControl1.Size = new System.Drawing.Size(277, 403);
-			this.inlineCommandsUserControl1.TabIndex = 10;
+			this.inlineCommandsUserControl1.TabIndex = 10;*/
 			// 
 			// buttonTestPermanentNetworkConnection
 			// 
@@ -187,7 +187,7 @@
 			this.ClientSize = new System.Drawing.Size(777, 445);
 			this.Controls.Add(this.buttonTestPermanentNetworkConnection);
 			this.Controls.Add(this.button1);
-			this.Controls.Add(this.inlineCommandsUserControl1);
+			//this.Controls.Add(this.inlineCommandsUserControl1);
 			this.Controls.Add(this.textBox2);
 			this.Controls.Add(this.treeView1);
 			this.Controls.Add(this.button_XmlRpc);
@@ -221,7 +221,7 @@
 		private System.Windows.Forms.Button button_XmlRpc;
 		private System.Windows.Forms.TreeView treeView1;
 		private System.Windows.Forms.TextBox textBox2;
-		private SharedClasses.InlineCommandsUserControl inlineCommandsUserControl1;
+		//private SharedClasses.InlineCommandsUserControl inlineCommandsUserControl1;
 		private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.Button buttonTestPermanentNetworkConnection;
 	}

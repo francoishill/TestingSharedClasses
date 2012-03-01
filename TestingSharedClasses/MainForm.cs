@@ -214,12 +214,13 @@ namespace TestingSharedClasses
 				e.Handled = true;
 				if (treeView1.SelectedNode != null && treeView1.SelectedNode.Tag is ICommandWithHandler)
 				{
-					ICommandWithHandler comm = treeView1.SelectedNode.Tag as ICommandWithHandler;
-					CommandsManagerClass.PerformCommandFromString(
-						comm,
-						textFeedbackEvent,
-						null,
-						textBox2.Text);
+					MessageBox.Show("Function commented out because it is old and obsolete");
+					//ICommandWithHandler comm = treeView1.SelectedNode.Tag as ICommandWithHandler;
+					//CommandsManagerClass.PerformCommandFromString(
+					//	comm,
+					//	textFeedbackEvent,
+					//	null,
+					//	textBox2.Text);
 				}
 			}
 		}
