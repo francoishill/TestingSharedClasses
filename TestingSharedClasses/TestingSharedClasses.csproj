@@ -170,9 +170,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RemoteXmlRpc.xaml.cs">
-      <DependentUpon>RemoteXmlRpc.xaml</DependentUpon>
-    </Compile>
     <Compile Include="SerializationInteropForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -292,11 +289,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="RemoteXmlRpc.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
