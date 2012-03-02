@@ -55,6 +55,20 @@ namespace TestingSharedClasses
 
 		private void MainForm_Load(object sender, EventArgs e)
 		{
+            var notif = new Prowl.ProwlNotification()
+            {
+                Description = "C# dscr",
+                Priority = Prowl.ProwlNotificationPriority.Emergency
+            };
+            var client = new Prowl.ProwlClient(
+                new Prowl.ProwlClientConfiguration()
+                {
+                    ProviderKey = "6fa888aaf5f801edd5520fb1e7996447beb414dd",
+                    ApplicationName = "Testing",
+                    BaseUrl = "https://api.prowlapp.com/publicapi/add"
+                });
+            client.PostNotification(notif);
+
 			//GenericSettings.EnsureAllSettingsAreInitialized();
 			//SharedClassesSettings.EnsureAllSharedClassesSettingsNotNullCreateDefault();
 			//inlineCommandsUserControl1.InitializeTreeViewNodes();
