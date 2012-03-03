@@ -74,10 +74,8 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="PresentationFramework.Aero" />
-    <Reference Include="Prowl">
-      <HintPath>..\packages\Prowl.NET.1.0\lib\net35\Prowl.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
     <Reference Include="system.windows.controls.input.toolkit">
@@ -122,12 +120,18 @@
     <Compile Include="..\..\SharedClasses\PhpInterop.cs">
       <Link>PhpInterop.cs</Link>
     </Compile>
+    <Compile Include="..\..\SharedClasses\ProwlAPI.cs">
+      <Link>ProwlAPI.cs</Link>
+    </Compile>
     <Compile Include="..\..\SharedClasses\RemoteXmlRpc.xaml.cs">
       <Link>RemoteXmlRpc.xaml.cs</Link>
       <DependentUpon>RemoteXmlRpc.xaml</DependentUpon>
     </Compile>
     <Compile Include="..\..\SharedClasses\StartupbatInterop.cs">
       <Link>StartupbatInterop.cs</Link>
+    </Compile>
+    <Compile Include="..\..\SharedClasses\StringExtensions.cs">
+      <Link>StringExtensions.cs</Link>
     </Compile>
     <Compile Include="..\..\SharedClasses\SvnInterop.cs">
       <Link>SvnInterop.cs</Link>

@@ -40,8 +40,10 @@
 			this.treeView1 = new System.Windows.Forms.TreeView();
 			this.textBox2 = new System.Windows.Forms.TextBox();
 			this.button1 = new System.Windows.Forms.Button();
-			//this.inlineCommandsUserControl1 = new SharedClasses.InlineCommandsUserControl();
 			this.buttonTestPermanentNetworkConnection = new System.Windows.Forms.Button();
+			this.textBoxProwlMessage = new System.Windows.Forms.TextBox();
+			this.label1 = new System.Windows.Forms.Label();
+			this.buttonSendProwl = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// buttonNetworkingInterop
@@ -158,18 +160,6 @@
 			this.button1.UseVisualStyleBackColor = true;
 			this.button1.Click += new System.EventHandler(this.button1_Click);
 			// 
-			// inlineCommandsUserControl1
-			// 
-			/*this.inlineCommandsUserControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.inlineCommandsUserControl1.Enabled = false;
-			this.inlineCommandsUserControl1.Location = new System.Drawing.Point(488, 13);
-			this.inlineCommandsUserControl1.Name = "inlineCommandsUserControl1";
-			this.inlineCommandsUserControl1.Padding = new System.Windows.Forms.Padding(2);
-			this.inlineCommandsUserControl1.Size = new System.Drawing.Size(277, 403);
-			this.inlineCommandsUserControl1.TabIndex = 10;*/
-			// 
 			// buttonTestPermanentNetworkConnection
 			// 
 			this.buttonTestPermanentNetworkConnection.Location = new System.Drawing.Point(13, 43);
@@ -180,14 +170,42 @@
 			this.buttonTestPermanentNetworkConnection.UseVisualStyleBackColor = true;
 			this.buttonTestPermanentNetworkConnection.Click += new System.EventHandler(this.buttonTestPermanentNetworkConnection_Click);
 			// 
+			// textBoxProwlMessage
+			// 
+			this.textBoxProwlMessage.Location = new System.Drawing.Point(532, 160);
+			this.textBoxProwlMessage.Name = "textBoxProwlMessage";
+			this.textBoxProwlMessage.Size = new System.Drawing.Size(200, 20);
+			this.textBoxProwlMessage.TabIndex = 13;
+			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Location = new System.Drawing.Point(529, 144);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(108, 13);
+			this.label1.TabIndex = 14;
+			this.label1.Text = "Send prowl message:";
+			// 
+			// buttonSendProwl
+			// 
+			this.buttonSendProwl.Location = new System.Drawing.Point(657, 186);
+			this.buttonSendProwl.Name = "buttonSendProwl";
+			this.buttonSendProwl.Size = new System.Drawing.Size(75, 23);
+			this.buttonSendProwl.TabIndex = 15;
+			this.buttonSendProwl.Text = "Send Prowl";
+			this.buttonSendProwl.UseVisualStyleBackColor = true;
+			this.buttonSendProwl.Click += new System.EventHandler(this.buttonSendProwl_Click);
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(777, 445);
+			this.Controls.Add(this.buttonSendProwl);
+			this.Controls.Add(this.label1);
+			this.Controls.Add(this.textBoxProwlMessage);
 			this.Controls.Add(this.buttonTestPermanentNetworkConnection);
 			this.Controls.Add(this.button1);
-			//this.Controls.Add(this.inlineCommandsUserControl1);
 			this.Controls.Add(this.textBox2);
 			this.Controls.Add(this.treeView1);
 			this.Controls.Add(this.button_XmlRpc);
@@ -224,5 +242,8 @@
 		//private SharedClasses.InlineCommandsUserControl inlineCommandsUserControl1;
 		private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.Button buttonTestPermanentNetworkConnection;
+		private System.Windows.Forms.TextBox textBoxProwlMessage;
+		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.Button buttonSendProwl;
 	}
 }

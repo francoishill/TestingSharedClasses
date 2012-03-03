@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
@@ -55,19 +56,11 @@ namespace TestingSharedClasses
 
 		private void MainForm_Load(object sender, EventArgs e)
 		{
-            var notif = new Prowl.ProwlNotification()
-            {
-                Description = "C# dscr",
-                Priority = Prowl.ProwlNotificationPriority.Emergency
-            };
-            var client = new Prowl.ProwlClient(
-                new Prowl.ProwlClientConfiguration()
-                {
-                    ProviderKey = "6fa888aaf5f801edd5520fb1e7996447beb414dd",
-                    ApplicationName = "Testing",
-                    BaseUrl = "https://api.prowlapp.com/publicapi/add"
-                });
-            client.PostNotification(notif);
+			ProwlAPI.SendNotificationUntilResponseFromiDevice(
+				"6fa888aaf5f801edd5520fb1e7996447beb414dd",
+				"TestSharedClasses",
+				TimeSpan.FromSeconds(5),
+				ProwlAPI.Priority.High);
 
 			//GenericSettings.EnsureAllSettingsAreInitialized();
 			//SharedClassesSettings.EnsureAllSharedClassesSettingsNotNullCreateDefault();
@@ -254,6 +247,18 @@ namespace TestingSharedClasses
 		{
 			PermanentNetworkConnection formPNC = new PermanentNetworkConnection();
 			formPNC.Show();
+		}
+
+		private void buttonSendProwl_Click(object sender, EventArgs e)
+		{
+			ProwlAPI.SendProwlNow(
+				apiKey: "6fa888aaf5f801edd5520fb1e7996447beb414dd",
+				applicationName: "TestingSharedClasses",
+				Event: "Test event",
+				description: textBoxProwlMessage.Text,
+				priority: ProwlAPI.Priority.Emergency,
+				callbackUrl: "http://firepuma.com"
+				);
 		}
 	}
 
