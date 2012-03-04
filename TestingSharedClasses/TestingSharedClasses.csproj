@@ -136,6 +136,12 @@
     <Compile Include="..\..\SharedClasses\SvnInterop.cs">
       <Link>SvnInterop.cs</Link>
     </Compile>
+    <Compile Include="..\..\SharedClasses\WindowMessagesInterop.cs">
+      <Link>WindowMessagesInterop.cs</Link>
+    </Compile>
+    <Compile Include="AppManagerInterface.xaml.cs">
+      <DependentUpon>AppManagerInterface.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AutoCompleteInteropForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -297,6 +303,10 @@
       <Link>RemoteXmlRpc.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="AppManagerInterface.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

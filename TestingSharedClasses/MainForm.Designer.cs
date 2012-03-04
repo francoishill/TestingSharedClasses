@@ -194,6 +194,7 @@
 			this.buttonSendProwl.TabIndex = 15;
 			this.buttonSendProwl.Text = "Send Prowl";
 			this.buttonSendProwl.UseVisualStyleBackColor = true;
+			this.buttonSendProwl.Visible = false;
 			this.buttonSendProwl.Click += new System.EventHandler(this.buttonSendProwl_Click);
 			// 
 			// MainForm

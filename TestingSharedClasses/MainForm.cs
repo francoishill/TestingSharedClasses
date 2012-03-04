@@ -56,11 +56,14 @@ namespace TestingSharedClasses
 
 		private void MainForm_Load(object sender, EventArgs e)
 		{
-			ProwlAPI.SendNotificationUntilResponseFromiDevice(
-				"6fa888aaf5f801edd5520fb1e7996447beb414dd",
-				"TestSharedClasses",
-				TimeSpan.FromSeconds(5),
-				ProwlAPI.Priority.High);
+			//ProwlAPI.SendNotificationUntilResponseFromiDevice(
+			//	"6fa888aaf5f801edd5520fb1e7996447beb414dd",
+			//	"TestSharedClasses",
+			//	TimeSpan.FromSeconds(5),
+			//	ProwlAPI.Priority.High);
+
+			AppManagerInterface appManagerInterface = new AppManagerInterface();
+			appManagerInterface.Show();
 
 			//GenericSettings.EnsureAllSettingsAreInitialized();
 			//SharedClassesSettings.EnsureAllSharedClassesSettingsNotNullCreateDefault();
@@ -70,7 +73,8 @@ namespace TestingSharedClasses
 			//cw.Show();
 
 			//buttonTestPermanentNetworkConnection.PerformClick();
-			buttonTestPermanentNetworkConnection.PerformClick();
+			
+			//buttonTestPermanentNetworkConnection.PerformClick();
 
 			//NetworkingInteropForm networkingInteropForm = new NetworkingInteropForm();
 			//networkingInteropForm.Show();
@@ -251,14 +255,14 @@ namespace TestingSharedClasses
 
 		private void buttonSendProwl_Click(object sender, EventArgs e)
 		{
-			ProwlAPI.SendProwlNow(
-				apiKey: "6fa888aaf5f801edd5520fb1e7996447beb414dd",
-				applicationName: "TestingSharedClasses",
-				Event: "Test event",
-				description: textBoxProwlMessage.Text,
-				priority: ProwlAPI.Priority.Emergency,
-				callbackUrl: "http://firepuma.com"
-				);
+			//ProwlAPI.SendProwlNow(
+			//	apiKey: "6fa888aaf5f801edd5520fb1e7996447beb414dd",
+			//	applicationName: "TestingSharedClasses",
+			//	Event: "Test event",
+			//	description: textBoxProwlMessage.Text,
+			//	priority: ProwlAPI.Priority.Emergency,
+			//	callbackUrl: "http://firepuma.com"
+			//	);
 		}
 	}
 
