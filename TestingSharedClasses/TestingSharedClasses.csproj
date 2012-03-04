@@ -123,10 +123,6 @@
     <Compile Include="..\..\SharedClasses\ProwlAPI.cs">
       <Link>ProwlAPI.cs</Link>
     </Compile>
-    <Compile Include="..\..\SharedClasses\RemoteXmlRpc.xaml.cs">
-      <Link>RemoteXmlRpc.xaml.cs</Link>
-      <DependentUpon>RemoteXmlRpc.xaml</DependentUpon>
-    </Compile>
     <Compile Include="..\..\SharedClasses\StartupbatInterop.cs">
       <Link>StartupbatInterop.cs</Link>
     </Compile>
@@ -135,12 +131,6 @@
     </Compile>
     <Compile Include="..\..\SharedClasses\SvnInterop.cs">
       <Link>SvnInterop.cs</Link>
-    </Compile>
-    <Compile Include="..\..\SharedClasses\WindowMessagesInterop.cs">
-      <Link>WindowMessagesInterop.cs</Link>
-    </Compile>
-    <Compile Include="AppManagerInterface.xaml.cs">
-      <DependentUpon>AppManagerInterface.xaml</DependentUpon>
     </Compile>
     <Compile Include="AutoCompleteInteropForm.cs">
       <SubType>Form</SubType>
@@ -297,17 +287,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="..\..\SharedClasses\RemoteXmlRpc.xaml">
-      <Link>RemoteXmlRpc.xaml</Link>
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="AppManagerInterface.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
