@@ -21,7 +21,7 @@ namespace TestingSharedClasses
 
 		private void button1_Click(object sender, EventArgs e)
 		{
-			DynamicCodeInvoking.RunSelectedFunction(
+			DynamicCodeInvoking.ClientRunSelectedFunction(
 				dynamicCodeInvokingUserControl1.GetSelectedDictionaryWithParameterNamesAndValues(),
 				dynamicCodeInvokingUserControl1.GetSelectedMethodClassType().AssemblyQualifiedName,
 				dynamicCodeInvokingUserControl1.GetSelectedMethodName());
@@ -29,7 +29,7 @@ namespace TestingSharedClasses
 
 		private void button2_Click(object sender, EventArgs e)
 		{
-			DynamicCodeInvoking.RunBlockOfCodeNow(
+			DynamicCodeInvoking.ClientRunBlockOfCodeNow(
 				dynamicCodeInvokingUserControl1.GetBlockOfCode());
 		}
 	}

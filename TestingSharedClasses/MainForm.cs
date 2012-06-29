@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -62,8 +63,8 @@ namespace TestingSharedClasses
 			//	TimeSpan.FromSeconds(5),
 			//	ProwlAPI.Priority.High);
 
-			AppManagerInterface appManagerInterface = new AppManagerInterface();
-			appManagerInterface.Show();
+			//AppManagerInterface appManagerInterface = new AppManagerInterface();
+			//appManagerInterface.Show();
 
 			//GenericSettings.EnsureAllSettingsAreInitialized();
 			//SharedClassesSettings.EnsureAllSharedClassesSettingsNotNullCreateDefault();
@@ -73,7 +74,7 @@ namespace TestingSharedClasses
 			//cw.Show();
 
 			//buttonTestPermanentNetworkConnection.PerformClick();
-			
+
 			//buttonTestPermanentNetworkConnection.PerformClick();
 
 			//NetworkingInteropForm networkingInteropForm = new NetworkingInteropForm();
@@ -263,6 +264,78 @@ namespace TestingSharedClasses
 			//	priority: ProwlAPI.Priority.Emergency,
 			//	callbackUrl: "http://firepuma.com"
 			//	);
+		}
+
+		public string ConvertStringToHex(string asciiString)
+		{
+			string hex = "";
+			foreach (char c in asciiString)
+			{
+				int tmp = c;
+				hex += String.Format("{0:x2}", (uint)System.Convert.ToUInt32(tmp.ToString()));
+			}
+			return hex;
+		}
+
+		public static string ByteArrayToString(byte[] ba)
+		{
+			StringBuilder hex = new StringBuilder(ba.Length * 2);
+			foreach (byte b in ba)
+				hex.AppendFormat("{0:x2}", b);
+			return hex.ToString();
+		}
+
+		public static byte[] StringToByteArray(String hex)
+		{
+			int NumberChars = hex.Length;
+			byte[] bytes = new byte[NumberChars / 2];
+			for (int i = 0; i < NumberChars; i += 2)
+				bytes[i / 2] = Convert.ToByte(hex.Substring(i, 2), 16);
+			return bytes;
+		}
+
+		private void button2_Click(object sender, EventArgs e)
+		{
+			//WebInterop.SetDefaultJsonInstanceSettings();
+			//string hex = WebInterop.GetJsonStringFromObject(ByteArrayToString(File.ReadAllBytes(@"C:\Windows\xDelta3.exe")), false);
+			//DynamicCodeInvoking.RunCodeReturnStruct result = DynamicCodeInvoking.ClientSaveJsonStringToFile("My category", "My name", "{ 'json' : '" + hex + "' }");
+			DynamicCodeInvoking.RunCodeReturnStruct result = DynamicCodeInvoking.ClientGetJsonStringFromFile("My category", "My name");
+			if (!result.Success)
+				UserMessages.ShowErrorMessage(result.ErrorMessage);
+			else
+			{
+				UserMessages.ShowInfoMessage("Successfully obtained json: " + result.MethodInvokeResultingObject.ToString());
+			}
+
+			//var type = DynamicCodeInvoking.GetTypeFromSimpleString(typeof(Process).FullName, true);
+			//string staticMethodName = "Start";
+			//DynamicCodeInvoking.RunCodeReturnStruct runmethod = DynamicCodeInvoking.RunSelectedFunction(
+			//	new Dictionary<string, ParameterNameAndType>() {
+			//		{"fileName", new ParameterNameAndType("fileName", typeof(string), "explorer") },
+			//		{"arguments", new ParameterNameAndType("arguments", typeof(string), "/select,\"" + @"c:\francois" + "\"") }
+			//	},
+			//	type.AssemblyQualifiedName,
+			//	staticMethodName,
+			//	false,
+			//	false);
+			//if (runmethod.Success)
+			//	UserMessages.ShowInfoMessage("Success, result = " + runmethod.MethodInvokeResultingObject.ToString());
+			//else
+			//	if (UserMessages.Confirm("Error occurred with remote function call, see error now?"))
+			//		UserMessages.ShowErrorMessage(runmethod.ErrorMessage);
+
+			//var type = DynamicCodeInvoking.GetTypeFromSimpleString(typeof(MessageBox).FullName, true);
+			//DynamicCodeInvoking.RunCodeReturnStruct runmethod = DynamicCodeInvoking.RunSelectedFunction(
+			//	new Dictionary<string, ParameterNameAndType>() {
+			//		{"text", new ParameterNameAndType("text", typeof(string), "Hallo sexy") }
+			//	},
+			//	type.AssemblyQualifiedName,
+			//	"Show",
+			//	false);
+			//if (runmethod.MethodInvokeResultingObject != null && runmethod.MethodInvokeResultingObject is DialogResult && (DialogResult)runmethod.MethodInvokeResultingObject == DialogResult.OK)
+			//	UserMessages.ShowInfoMessage("OK was clicked");
+			//else
+			//	UserMessages.ShowErrorMessage("Failed, result = " + runmethod.MethodInvokeResultingObject + Environment.NewLine + "Error = " + runmethod.ErrorMessage);
 		}
 	}
 
