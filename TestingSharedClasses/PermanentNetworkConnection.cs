@@ -161,7 +161,7 @@ namespace TestingSharedClasses
 		bool handshakeBusy = false;
 		private bool ServerToClientHandshake(out string errorMessage)
 		{
-			//TODO: Must not perform handshake if another transfer (like file or whatever) is busy, this would cause the bytes to get mixed up
+			//Must not perform handshake if another transfer (like file or whatever) is busy, this would cause the bytes to get mixed up
 			if (!handshakeBusy)
 			{
 				handshakeBusy = true;

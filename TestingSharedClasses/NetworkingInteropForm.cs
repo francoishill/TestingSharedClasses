@@ -74,7 +74,6 @@ namespace TestingSharedClasses
 			buttonStopServer.Visible = true;
 			ThreadingInterop.PerformVoidFunctionSeperateThread(() =>
 			{
-				//TODO: There is some issue with the second time a file is sent (on the server side).
 				NetworkInterop.StartServer_FileStream(
 					null,
 					out listeningSocket,
@@ -85,7 +84,6 @@ namespace TestingSharedClasses
 
 			//ThreadingInterop.PerformVoidFunctionSeperateThread(() =>
 			//{
-			//	//TODO: There is some issue with the second time a file is sent (on the server side).
 			//	NetworkInterop.StartServer(out listeningSocket, this, 11000, TextFeedbackEvent: textFeedback, ProgressChangedEvent: progressChanged);
 			//});//, false);
 		}
