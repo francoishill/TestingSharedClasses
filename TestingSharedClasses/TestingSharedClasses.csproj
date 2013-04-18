@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -21,7 +21,8 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <BaseIntermediateOutputPath>..\..\..\..\Binaries\TestingSharedClasses\obj\Debug\x86</BaseIntermediateOutputPath>
+    <OutputPath>..\..\..\..\Binaries\TestingSharedClasses\bin\Debug\x86</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -32,7 +33,8 @@
     <PlatformTarget>x86</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <BaseIntermediateOutputPath>..\..\..\..\Binaries\TestingSharedClasses\obj\Release\x86</BaseIntermediateOutputPath>
+    <OutputPath>..\..\..\..\Binaries\TestingSharedClasses\bin\Release\x86</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -41,13 +43,15 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <PlatformTarget>AnyCPU</PlatformTarget>
-    <OutputPath>bin\Debug\</OutputPath>
+    <BaseIntermediateOutputPath>..\..\..\..\Binaries\TestingSharedClasses\obj\Debug\AnyCPU</BaseIntermediateOutputPath>
+    <OutputPath>..\..\..\..\Binaries\TestingSharedClasses\bin\Debug\AnyCPU</OutputPath>
     <DefineConstants>TRACE;DEBUG</DefineConstants>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
     <PlatformTarget>AnyCPU</PlatformTarget>
-    <OutputPath>bin\Release\</OutputPath>
+    <BaseIntermediateOutputPath>..\..\..\..\Binaries\TestingSharedClasses\obj\Release\AnyCPU</BaseIntermediateOutputPath>
+    <OutputPath>..\..\..\..\Binaries\TestingSharedClasses\bin\Release\AnyCPU</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <Optimize>true</Optimize>
     <Prefer32Bit>false</Prefer32Bit>
